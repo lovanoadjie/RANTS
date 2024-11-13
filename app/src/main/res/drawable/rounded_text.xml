@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow Layer -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#33000000"/> <!-- Warna shadow (abu-abu transparan) -->
+            <corners android:radius="45dp"/>
+            <padding
+                android:left="5dp"
+                android:top="5dp"
+                android:right="5dp"
+                android:bottom="5dp"/>
+        </shape>
+    </item>
+
+    <!-- Color Layer -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#B63E3E"/> <!-- Warna tambahan (merah) -->
+            <corners android:radius="45dp"/>
+        </shape>
+    </item>
+
+    <!-- White Background Layer -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="45dp"/>
+        </shape>
+    </item>
+</layer-list>

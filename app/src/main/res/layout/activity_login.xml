@@ -1,0 +1,174 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="16dp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="210dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="19dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gambar3" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="55dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ganbar2" />
+
+    <!-- CardView untuk form login -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@android:color/transparent"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins"
+                android:text="Login"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins"
+                android:text="Username"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                android:layout_margin="15dp"
+                >
+
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_texr_login"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/white"
+                    android:hint="username"
+                    android:paddingLeft="20dp"
+                    android:inputType="text"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="28dp"
+                android:fontFamily="@font/poppins"
+                android:text="Password"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                android:layout_margin="15dp"
+                >
+
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_texr_login"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/white"
+                    android:hint="password"
+                    android:paddingLeft="20dp"
+                    android:inputType="text"/>
+            </androidx.cardview.widget.CardView>
+
+            <CheckBox
+                android:id="@+id/showPasswordCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tampilkan Sandi"
+                android:layout_marginStart="16dp" />
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="13dp"
+                app:backgroundTint="@null"
+                android:background="@drawable/rounded_register"
+                android:text="Login"
+                android:fontFamily="@font/poppins"
+                android:textStyle="bold" />
+
+            <!-- Bagian teks "Belum Punya Akun?" dan tombol "Daftar" -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="Belum Punya Akun?"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/daftarButton"                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="Daftar"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:background="@color/white"
+                    app:backgroundTint="@null"
+                    android:onClick="onDaftarClick"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

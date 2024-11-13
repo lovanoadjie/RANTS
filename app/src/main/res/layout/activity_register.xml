@@ -1,0 +1,200 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:padding="16dp" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/gambar3"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="12dp"
+            android:scaleType="fitCenter"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="59dp"
+            android:src="@drawable/ganbar2"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="12dp"
+            android:scaleType="fitCenter"/>
+
+        <!-- CardView untuk form login -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="555dp"
+            android:layout_gravity="bottom"
+            android:background="@android:color/transparent"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="8dp"
+            android:layout_margin="15dp"
+            >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/poppins"
+                            android:text="Daftar"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            android:layout_margin="15dp"
+                            >
+
+                                <EditText
+                                    android:id="@+id/editText1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_texr_login"
+                                android:textColorHint="@color/black"
+                                android:textColor="@color/white"
+                                android:hint="Nama Lengkap"
+                                android:paddingLeft="20dp"
+                                android:inputType="text"/>
+
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            android:layout_margin="15dp"
+                            >
+
+                                <EditText
+                                    android:id="@+id/editText2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_texr_login"
+                                    android:textColorHint="@color/black"
+                                    android:textColor="@color/white"
+                                    android:hint="Nama Lengkap"
+                                    android:paddingLeft="20dp"
+                                    android:inputType="text"/>
+
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            android:layout_margin="15dp"
+                            >
+
+                                <EditText
+                                    android:id="@+id/editText3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_texr_login"
+                                    android:textColorHint="@color/black"
+                                    android:textColor="@color/white"
+                                    android:hint="Nama Lengkap"
+                                    android:paddingLeft="20dp"
+                                    android:inputType="text"/>
+
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            android:layout_margin="15dp"
+                            >
+
+                                <EditText
+                                    android:id="@+id/editText4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/rounded_texr_login"
+                                    android:textColorHint="@color/black"
+                                    android:textColor="@color/white"
+                                    android:hint="Nama Lengkap"
+                                    android:paddingLeft="20dp"
+                                    android:inputType="text"/>
+
+                        </androidx.cardview.widget.CardView>
+
+
+
+
+
+                        <Button
+                            android:id="@+id/setdaftarButton"
+                            android:layout_width="300dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="13dp"
+                            app:backgroundTint="@null"
+                            android:text="Daftar"
+                            android:background="@drawable/rounded_register"
+                            android:padding="10dp"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold" />
+
+                        <!-- Bagian teks "Belum Punya Akun?" dan tombol "Daftar" -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="Sudah  Punya Akun?"
+                                    android:textStyle="bold" />
+
+                                <Button
+                                    android:id="@+id/setloginButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="Login Sekarang"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:background="@color/white"
+                                    android:padding="0dp"
+                                    app:backgroundTint="@null"
+                                    android:onClick="onDaftarClick"
+                                    android:layout_marginStart="7dp"
+                                    />
+
+                        </LinearLayout>
+
+                </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+</FrameLayout>
