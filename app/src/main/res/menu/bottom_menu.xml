@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_beranda"
+        android:title="Beranda"
+        android:icon="@drawable/baseline_home_24"
+        />
+    <item
+        android:id="@+id/bottom_pesan"
+        android:icon="@drawable/booking"
+        android:title="Pesan"/>
+    <item
+        android:id="@+id/bottom_riwayat"
+        android:icon="@drawable/baseline_history_24"
+        android:title="Riwayat"/>
+    <item
+        android:id="@+id/button_profil"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Profil"/>
+</menu>
