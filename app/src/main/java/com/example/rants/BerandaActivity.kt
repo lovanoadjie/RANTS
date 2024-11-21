@@ -40,6 +40,28 @@ class BerandaActivity : AppCompatActivity() {
         binding.jadwalButton.setOnClickListener {
             goToJadwalActivity()
         }
+
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.sheet)
+        bottomSheetBehavior.apply {
+            peekHeight = 400   // Set peek height
+            state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
+        }
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set item selected listener for bottom navigation
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.bottom_pesan -> {
+                    // Navigate to PesanActivity
+                    startActivity(Intent(this, PesanActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 
     private fun goToJadwalActivity() {
@@ -58,31 +80,8 @@ class BerandaActivity : AppCompatActivity() {
         videoViewMek.start()
 
         // Reference to BottomSheetBehavior
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.sheet)
-        bottomSheetBehavior.apply {
-            peekHeight = 500   // Set peek height
-            state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
-        }
 
         // Reference to BottomNavigationView
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-
-        // Set item selected listener for bottom navigation
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.bottom_beranda -> {
-                    // Navigate to BerandaActivity
-                    startActivity(Intent(this, BerandaActivity::class.java))
-                    true
-                }
-                R.id.bottom_pesan -> {
-                    // Navigate to PesanActivity
-                    startActivity(Intent(this, PesanActivity::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
 
         // Start updating the time
         handler.post(updateTimeRunnable)

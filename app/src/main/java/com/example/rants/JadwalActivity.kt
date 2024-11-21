@@ -18,7 +18,7 @@ class JadwalActivity : AppCompatActivity() {
 
         // Apply settings to the BottomSheetBehavior
         bottomSheetBehavior.apply {
-            peekHeight = 700   // Set peek height
+            peekHeight = 350   // Set peek height
             state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
         }
 

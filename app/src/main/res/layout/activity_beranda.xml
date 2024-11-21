@@ -126,7 +126,7 @@
     <FrameLayout
         android:id="@+id/sheet"
         android:layout_width="match_parent"
-        android:layout_height="700dp"
+        android:layout_height="500dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:background="@drawable/rounded">
 
