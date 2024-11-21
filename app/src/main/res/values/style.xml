@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style untuk teks tanggal di CalendarView -->
+    <style name="CalendarDateText">
+        <item name="android:textSize">14sp</item> <!-- Ukuran teks -->
+        <item name="android:textColor">@color/black</item> <!-- Warna teks -->
+        <item name="android:fontFamily">@font/poppins</item> <!-- Jenis font -->
+        <item name="android:textStyle">bold</item> <!-- Gaya teks -->
+    </style>
+</resources>

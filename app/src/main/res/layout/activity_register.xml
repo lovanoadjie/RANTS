@@ -65,7 +65,7 @@
                             >
 
                                 <EditText
-                                    android:id="@+id/editText1"
+                                    android:id="@+id/editTextNama"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/rounded_texr_login"
@@ -87,13 +87,13 @@
                             >
 
                                 <EditText
-                                    android:id="@+id/editText2"
+                                    android:id="@+id/editTextEmail"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/rounded_texr_login"
                                     android:textColorHint="@color/black"
                                     android:textColor="@color/white"
-                                    android:hint="Nama Lengkap"
+                                    android:hint="Email"
                                     android:paddingLeft="20dp"
                                     android:inputType="text"/>
 
@@ -109,13 +109,13 @@
                             >
 
                                 <EditText
-                                    android:id="@+id/editText3"
+                                    android:id="@+id/editTextNohp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/rounded_texr_login"
                                     android:textColorHint="@color/black"
                                     android:textColor="@color/white"
-                                    android:hint="Nama Lengkap"
+                                    android:hint="Nomor HP"
                                     android:paddingLeft="20dp"
                                     android:inputType="text"/>
 
@@ -131,13 +131,13 @@
                             >
 
                                 <EditText
-                                    android:id="@+id/editText4"
+                                    android:id="@+id/editTextPass"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/rounded_texr_login"
                                     android:textColorHint="@color/black"
                                     android:textColor="@color/white"
-                                    android:hint="Nama Lengkap"
+                                    android:hint="Password"
                                     android:paddingLeft="20dp"
                                     android:inputType="text"/>
 

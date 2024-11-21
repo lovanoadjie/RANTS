@@ -1,10 +1,8 @@
 package com.example.rants
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.Toolbar // Gunakan Toolbar dari androidx
 import com.example.rants.databinding.ActivityJadwalBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -22,6 +20,18 @@ class JadwalActivity : AppCompatActivity() {
         bottomSheetBehavior.apply {
             peekHeight = 700   // Set peek height
             state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
+        }
+
+        // Gunakan androidx Toolbar
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        // Aktifkan tombol kembali
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Navigasi kembali saat tombol diklik
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
         }
     }
 }

@@ -6,13 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".BerandaActivity"
     >
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/rounded_top_corners2"
         android:gravity="center"
         android:padding="16dp" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:src="@drawable/foto1"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:scaleType="fitCenter"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:src="@drawable/foto2"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:scaleType="fitCenter"/>
     <!-- LinearLayout di dalam CoordinatorLayout -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,20 +36,88 @@
 
         <!-- Bagian Atas (Background Merah dengan Sudut Membulat) -->
 
+
+
         <!-- CardView dengan CalendarView -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="100dp"
+            android:layout_height="380dp"
+            android:layout_marginTop="120dp"
             android:layout_marginHorizontal="20dp"
             android:background="@android:color/transparent"
             app:cardCornerRadius="25dp"
             app:cardElevation="8dp">
 
-            <CalendarView
-                android:id="@+id/simpleCalendarView"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- CardView 1 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="20dp"
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="8dp">
+
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- LinearLayout atau RelativeLayout untuk pengaturan tata letak internal -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+                <Button
+                    android:id="@+id/jadwalButton"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/rounded_psan"
+                    android:text="Jadwal acara"
+                    android:fontFamily="@font/poppins"
+                    android:textStyle="bold" />
+                <!-- TextView untuk jam digital -->
+                <TextView
+                    android:id="@+id/digitalClock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- VideoView -->
+                    <VideoView
+                        android:id="@+id/videoViewMek"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
@@ -43,22 +126,63 @@
     <FrameLayout
         android:id="@+id/sheet"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="700dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:background="@drawable/rounded">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:menu="@menu/bottom_menu"
-            app:labelVisibilityMode="labeled"
-            app:elevation="8dp" />
-        <ImageView
+
+    <ImageView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_remove_24" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Galeri"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:lineSpacingExtra="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="28dp"
+            android:text="Tari persembahan"
+            android:layout_marginTop="80dp"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="28dp"
+            android:text="Tari Kreasi"
+            android:layout_marginTop="270dp"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="28dp"
+            android:text="Make up"
+            android:layout_marginTop="455dp"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="4dp"/>
 
         <!-- Pastikan HorizontalScrollView terintegrasi dengan BottomSheet -->
         <ScrollView
@@ -66,7 +190,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="70dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,12 +205,30 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <!-- CardView 1 -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="2in"
+                            android:layout_height="1in"
+                            app:cardElevation="5dp"
+                            app:cardCornerRadius="10dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="30dp">
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:src="@drawable/img"
+                                android:scaleType="fitXY" />
+                        </androidx.cardview.widget.CardView>
+
                         <androidx.cardview.widget.CardView
                             android:layout_width="2in"
                             android:layout_height="1in"
@@ -116,10 +258,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@color/white"
-                                android:src="@drawable/ganbar2"
-                                android:scaleType="fitXY" />
-
+                                android:src="@drawable/foto"
+                                android:scaleType="fitXY"
+                                />
                         </androidx.cardview.widget.CardView>
+
                     </LinearLayout>
                 </HorizontalScrollView>
 
@@ -220,6 +363,7 @@
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
                 </HorizontalScrollView>
+
 
             </LinearLayout>
         </ScrollView>

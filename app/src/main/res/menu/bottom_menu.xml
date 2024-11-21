@@ -3,8 +3,7 @@
     <item
         android:id="@+id/bottom_beranda"
         android:title="Beranda"
-        android:icon="@drawable/baseline_home_24"
-        />
+        android:icon="@drawable/baseline_home_24"/>
     <item
         android:id="@+id/bottom_pesan"
         android:icon="@drawable/booking"
