@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     val authResponse = response.body()
-                    if (authResponse != nul) {
+                    if (authResponse != null) {
                         saveTokenToSharedPreferences(authResponse.token)
                         Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                         goToBerandaActivity()
