@@ -48,7 +48,7 @@
                     android:scaleType="fitCenter" />
             </FrameLayout>
             <Button
-                android:id="@+id/loginButton"
+                android:id="@+id/sewapenariButton"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -91,7 +91,7 @@
             </FrameLayout>
 
             <Button
-                android:id="@+id/loginButton1"
+                android:id="@+id/sewakostumButton1"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -133,7 +133,7 @@
             </FrameLayout>
 
             <Button
-                android:id="@+id/loginButton2"
+                android:id="@+id/sewamakeupButton2"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
