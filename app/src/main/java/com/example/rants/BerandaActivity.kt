@@ -100,11 +100,17 @@ private val slideHandler = Handler()
             when (item.itemId) {
                 R.id.bottom_pesan-> {
                     startActivity(Intent(this, PesanActivity::class.java))
+                    finish()
                     true
-
                 }
                 R.id.bottom_riwayat-> {
                     startActivity(Intent(this, RiwayatActyvity::class.java))
+                    finish()
+                    true
+                }
+                R.id.bottom_profil-> {
+                    startActivity(Intent(this, ProfilActivity::class.java))
+                    finish()
                     true
                 }
                 else -> false
