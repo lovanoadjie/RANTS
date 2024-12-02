@@ -117,6 +117,15 @@ private val slideHandler = Handler()
             }
         }
 
+        binding.JadwalButton.setOnClickListener(){
+            goToJadwalActivity()
+        }
+    }
+    private fun goToJadwalActivity(){
+        val intent = Intent(this, JadwalActivity::class.java).also {
+            startActivity(it)
+        }
+
     }
 
 }
