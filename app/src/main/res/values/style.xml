@@ -7,4 +7,5 @@
         <item name="android:fontFamily">@font/poppins</item> <!-- Jenis font -->
         <item name="android:textStyle">bold</item> <!-- Gaya teks -->
     </style>
+
 </resources>
