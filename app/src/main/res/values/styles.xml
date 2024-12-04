@@ -8,7 +8,7 @@
         <item name="android:textStyle">bold</item> <!-- Gaya teks -->
 
     </style>
-
+<!-- Style untuk navbar bawah -->
     <style name="BottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="android:textColor">@drawable/navbar_text_tint</item>
         <item name="android:textSize">14sp</item>
@@ -17,9 +17,10 @@
 
     <style name="TextAppearance.App">
     <item name="android:textColor">@color/grey</item> <!-- Teks berwarna grey -->
-    <item name="android:textSize">12sp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 
-
+    <style name="TextAppearance">m</style>
 
 
 </resources>

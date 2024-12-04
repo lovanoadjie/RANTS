@@ -13,6 +13,10 @@ class PesanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        overridePendingTransition(0, 0)
+
+
         binding = ActivityPesanBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bottomNavigation.selectedItemId = R.id.bottom_pesan
@@ -54,5 +58,4 @@ class PesanActivity : AppCompatActivity() {
             }
         }
     }
-
 }
