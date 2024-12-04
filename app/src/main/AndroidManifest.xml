@@ -15,6 +15,9 @@
         android:theme="@style/Base.Theme.RANTS"
         tools:targetApi="31">
         <activity
+            android:name=".ChatadminActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfilActivity"
             android:exported="false" />
         <activity
