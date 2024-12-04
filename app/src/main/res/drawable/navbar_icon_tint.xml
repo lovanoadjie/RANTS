@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/marron" android:state_checked="true"/>  <!-- Warna aktif marun -->
+    <item android:drawable="@color/grey" /> <!-- Warna default -->
+</selector>

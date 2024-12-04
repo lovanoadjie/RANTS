@@ -2,25 +2,20 @@ package com.example.rants
 
 import android.content.Intent
 import android.os.Bundle
-//import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.rants.databinding.ActivityBerandaBinding
-import com.example.rants.databinding.RiwayatActyvityBinding
+import com.example.rants.databinding.ActivityProfilBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class RiwayatActyvity : AppCompatActivity() {
-    private lateinit var binding: RiwayatActyvityBinding
+class ProfilActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityProfilBinding // Perbaiki nama binding agar sesuai dengan file XML layout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = RiwayatActyvityBinding.inflate(layoutInflater)
+        binding = ActivityProfilBinding.inflate(layoutInflater) // Pastikan nama ini sesuai dengan file binding
         setContentView(binding.root)
-        binding.bottomNavigation.selectedItemId = R.id.bottom_riwayat
-
+        binding.bottomNavigation.selectedItemId = R.id.bottom_profil
         setupBottomNavigation()
-        }
+    }
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
@@ -36,8 +31,8 @@ class RiwayatActyvity : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.bottom_profil -> {
-                    startActivity(Intent(this, ProfilActivity::class.java))
+                R.id.bottom_riwayat-> {
+                    startActivity(Intent(this, RiwayatActyvity::class.java))
                     finish()
                     true
                 }
