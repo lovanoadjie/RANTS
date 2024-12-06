@@ -14,4 +14,6 @@ interface ApiService {
 
     @GET("calendars") // Endpoint Laravel untuk mendapatkan semua data kalender
     fun getCalendars(): Call<List<Calendar>>
+
+//    @GET
 }
