@@ -9,11 +9,14 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.RANTS"
         tools:targetApi="31">
+        <activity
+            android:name=".WhaynotcarouselActivity"
+            android:exported="true" />
         <activity
             android:name=".ChatadminActivity"
             android:exported="false" />
@@ -24,16 +27,10 @@
             android:name=".RiwayatActyvity"
             android:exported="false" />
         <activity
-            android:name=".kostum"
-            android:exported="false" />
-        <activity
             android:name=".KostumActivity"
             android:exported="false" />
         <activity
             android:name=".PesanActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RiwayatActivity"
             android:exported="false" />
         <activity
             android:name=".JadwalActivity"
