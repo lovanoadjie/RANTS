@@ -17,22 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar1"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/pesankostum"
-            android:title="Halaman Beranda"
-            android:titleTextColor="@android:color/white"
-            app:navigationIcon="@drawable/fotojadwal" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Scrollable Content -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/app_bar"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"

@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.rants.databinding.ActivityBerandaBinding
@@ -33,10 +34,7 @@ private val slideHandler = Handler()
         super.onCreate(savedInstanceState)
         binding = ActivityBerandaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        overridePendingTransition(0, 0)
-
-//        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
         listGambar.add(
             ImageData(
@@ -67,6 +65,13 @@ private val slideHandler = Handler()
                 slideHandler.postDelayed(sliderRun,3000)
             }
         })
+
+        binding.JadwalButton.setOnClickListener(){
+            goToJadwalActivity()
+        }
+        binding.mesegeBtn.setOnClickListener(){
+            goToChatadminActivity()
+        }
 
 
         }
@@ -104,19 +109,16 @@ private val slideHandler = Handler()
             when (item.itemId) {
                 R.id.bottom_pesan-> {
                     startActivity(Intent(this, PesanActivity::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     finish()
                     true
                 }
                 R.id.bottom_riwayat-> {
                     startActivity(Intent(this, RiwayatActyvity::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     finish()
                     true
                 }
                 R.id.bottom_profil-> {
                     startActivity(Intent(this, ProfilActivity::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     finish()
                     true
                 }
@@ -125,5 +127,16 @@ private val slideHandler = Handler()
         }
 
     }
+    private fun goToJadwalActivity(){
+        val intent = Intent(this, JadwalActivity::class.java).also {
+            startActivity(it)
+        }
+    }
+    private fun goToChatadminActivity(){
+        val intent = Intent(this, ChatadminActivity::class.java).also {
+            startActivity(it)
+        }
+    }
+
 
 }

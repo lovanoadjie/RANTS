@@ -16,61 +16,61 @@
         app:cardElevation="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Teks di dalam CardView -->
+        app:layout_constraintEnd_toEndOf="parent" >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingHorizontal="5dp">
+        <ImageView
+            android:id="@+id/fotoProfil"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/circle_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/baseline_person_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Gambar di dalam CardView -->
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:contentDescription="Deskripsi Gambar"
-                android:scaleType="centerCrop"
-                android:src="@drawable/baseline_person_24" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
-            <TextView
-                android:id="@+id/card_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:text="user"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+           <ImageView
+               android:id="@+id/mesege_btn"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:src="@drawable/baseline_chat_26"
+               android:layout_marginTop="20dp"
+               android:layout_margin="20dp"
+               app:tint="@color/blue"/>
+
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:contentDescription="Deskripsi Gambar"
-                android:layout_marginLeft="190dp"
-                android:layout_marginRight="10dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/baseline_person_24" />
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:contentDescription="Deskripsi Gambar"
-                android:scaleType="centerCrop"
-                android:src="@drawable/baseline_person_24" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_notifications_27"
+                android:layout_marginTop="20dp"
+                android:layout_margin="5dp"
+                app:tint="@color/blue"/>
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/card_view"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_view">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,59 +78,81 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent"
+                app:cardElevation="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" >
+                <Button
+                    android:id="@+id/JadwalButton"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:backgroundTint="@null"
+                    android:text="Jadwal"
+                    android:background="@drawable/rounded_corners"
+                    android:padding="1dp"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/poppins"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="260dp"
+                app:layout_constraintTop_toBottomOf="@id/card_view"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_view" />
+                app:layout_constraintEnd_toEndOf="parent" />
+
 
 
             <!-- Dots Indicator -->
             <LinearLayout
                 android:id="@+id/dots_indecator"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_pager">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_pager"
+                android:layout_marginTop="5dp" />
 
-            </LinearLayout>
-
-
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view1"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent"
+                app:cardElevation="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
 
     </ScrollView>
 
     <!-- Bottom Navigation -->
-    <!-- Garis View yang terletak tepat di atas BottomNavigationView -->
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        app:itemBackground="@android:color/transparent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_menu"
-        app:itemIconTint="@drawable/navbar_icon_tint"
-        app:itemTextColor="@drawable/navbar_text_tint"
-        app:itemTextAppearance="@style/TextAppearance.App"
-        app:elevation="8dp"
-        android:paddingBottom="8dp">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#D3D3D3" />
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:itemIconTint="@drawable/navbar"
+        app:itemTextColor="@drawable/navbar"
+        app:elevation="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
