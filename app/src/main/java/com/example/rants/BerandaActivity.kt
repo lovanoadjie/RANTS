@@ -3,59 +3,121 @@ package com.example.rants
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.widget.MediaController
+import android.text.Html
+import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.TimePicker
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.example.rants.databinding.ActivityBerandaBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class BerandaActivity : AppCompatActivity() {
+
+    // Binding untuk layout
     private lateinit var binding: ActivityBerandaBinding
-    private val clock: TextView by lazy { findViewById(R.id.digitalClock) }  // Using val for clock
-    private val handler = Handler()
-    private var currentTimeInMillis: Long = System.currentTimeMillis()  // Set initial time
-
-    // Runnable to update time every second
-    private val updateTimeRunnable = object : Runnable {
-        override fun run() {
-            currentTimeInMillis = System.currentTimeMillis()  // Update the current time every second
-            updateClock()  // Update clock display
-            updateDate()   // Update date display
-            handler.postDelayed(this, 1000)  // Continue updating every 1 second
-        }
-    }
-
+    private lateinit var adapter: ImageAdapter
+    private val listGambar = ArrayList<ImageData>()
+    private lateinit var dots: ArrayList<TextView>
+private val slideHandler = Handler()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBerandaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        overridePendingTransition(0, 0)
 
-        binding.jadwalButton.setOnClickListener {
-            goToJadwalActivity()
+//        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+
+
+        listGambar.add(
+            ImageData(
+                imgUrl = "https://images.unsplash.com/photo-1515041219749-89347f83291a?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            )
+        )
+        listGambar.add(
+            ImageData(
+                imgUrl = "https://images.unsplash.com/photo-1660080494538-bc62fbc6a30d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2FydG9vbnN8ZW58MHx8MHx8fDA%3D"
+            )
+        )
+        listGambar.add(
+            ImageData(
+                imgUrl = "https://images.unsplash.com/photo-1717732596477-04f8c5d53387?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FydG9vbnN8ZW58MHx8MHx8fDA%3D"
+            )
+        )
+        adapter = ImageAdapter(listGambar)
+        binding.viewPager.adapter = adapter
+        dots = ArrayList()
+        setIndicator()
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                selectDot(position)
+                super.onPageSelected(position)
+
+                slideHandler.removeCallbacks(sliderRun)
+                slideHandler.postDelayed(sliderRun,3000)
+            }
+        })
+
+
         }
 
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.sheet)
-        bottomSheetBehavior.apply {
-            peekHeight = 400   // Set peek height
-            state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
-        }
+    private val sliderRun = Runnable {
+        binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+    }
 
+    private fun selectDot(position: Int) {
+        for (i in 0 until listGambar.size) {
+            if (i==position){
+              dots[i].setTextColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_primary))
+            }else{
+                dots[i].setTextColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
+            }
+        }
+    }
+    private fun setIndicator() {
+        for (i in 0 until listGambar.size) {
+            dots.add(TextView(this))
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                dots[i].text = Html.fromHtml("&#9679", Html.FROM_HTML_MODE_LEGACY).toString()
+            }else{
+                dots[i].text = Html.fromHtml("&#9679")
+            }
+            dots[i].textSize = 18f
+            binding.dotsIndecator.addView(dots[i])
+        }
+        setupBottomNavigation()
+    }
+    private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-
-        // Set item selected listener for bottom navigation
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-
-                R.id.bottom_pesan -> {
-                    // Navigate to PesanActivity
+                R.id.bottom_pesan-> {
                     startActivity(Intent(this, PesanActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish()
+                    true
+                }
+                R.id.bottom_riwayat-> {
+                    startActivity(Intent(this, RiwayatActyvity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish()
+                    true
+                }
+                R.id.bottom_profil-> {
+                    startActivity(Intent(this, ProfilActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish()
                     true
                 }
                 else -> false
@@ -64,67 +126,4 @@ class BerandaActivity : AppCompatActivity() {
 
     }
 
-    private fun goToJadwalActivity() {
-        val intent = Intent(this, JadwalActivity::class.java).also {
-            startActivity(it)
-        }
-
-        val videoViewMek: VideoView = findViewById(R.id.videoViewMek)
-        val mediaController = MediaController(this)
-        mediaController.setAnchorView(videoViewMek)
-
-       val offlineUri:Uri = Uri.parse("android.resource://$packageName/${R.raw.video}")
-        videoViewMek.setMediaController(mediaController)
-        videoViewMek.setVideoURI(offlineUri  )
-        videoViewMek.requestFocus()
-        videoViewMek.start()
-
-        // Reference to BottomSheetBehavior
-
-        // Reference to BottomNavigationView
-
-        // Start updating the time
-        handler.post(updateTimeRunnable)
-
-        // Set up TimePickerDialog on TextView click to manually set time
-        clock.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val hour = calendar.get(Calendar.HOUR_OF_DAY)
-            val minute = calendar.get(Calendar.MINUTE)
-
-            // Show TimePickerDialog to set time manually
-            val timePickerDialog = TimePickerDialog(this, { view, hourOfDay, minuteOfHour ->
-                // Set the chosen time manually
-                currentTimeInMillis = calendar.apply {
-                    set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    set(Calendar.MINUTE, minuteOfHour)
-                }.timeInMillis
-                updateClock()  // Update the clock display after setting time manually
-            }, hour, minute, true)
-
-            timePickerDialog.show()
-        }
-    }
-
-    // Method to update the clock with the current time
-    private fun updateClock() {
-        val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())  // Format for time
-        val currentTime = sdf.format(Date(currentTimeInMillis))
-
-        // Update the clock TextView with the current time
-        clock.text = currentTime
-    }
-
-    // Method to update the date with the current date
-    private fun updateDate() {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())  // Format for date
-        val currentDate = sdf.format(Date(currentTimeInMillis))
-
-        // Update the date TextView with the current date
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacks(updateTimeRunnable) // Stop the time updates when the activity is destroyed
-    }
 }

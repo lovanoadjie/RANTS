@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style untuk teks tanggal di CalendarView -->
+    <style name="CalendarDateText">
+        <item name="android:textSize">14sp</item> <!-- Ukuran teks -->
+        <item name="android:textColor">@color/black</item> <!-- Warna teks -->
+        <item name="android:fontFamily">@font/poppins</item> <!-- Jenis font -->
+        <item name="android:textStyle">bold</item> <!-- Gaya teks -->
+
+    </style>
+<!-- Style untuk navbar bawah -->
+    <style name="BottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:textColor">@drawable/navbar_text_tint</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:itemTextAppearance">@style/TextAppearance.App</item>
+    </style>
+
+    <style name="TextAppearance.App">
+    <item name="android:textColor">@color/grey</item> <!-- Teks berwarna grey -->
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance">m</style>
+
+
+</resources>

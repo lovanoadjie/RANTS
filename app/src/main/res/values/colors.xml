@@ -4,5 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="marron">#4B0F0F</color>
     <color name="red">#DB1111</color>
-
+    <color name="blue">#DA1133DB</color>
+    <color name="dark">#DA2C2D2F</color>
+    <color name="maroon">#4B0F0F</color>
+    <color name="grey">#5F5E5E</color>
+    <color name="colorActive">#4B0F0F</color> <!-- Maroon -->
+    <color name="colorInactive">#5F5E5E</color> <!-- Grey -->
 </resources>

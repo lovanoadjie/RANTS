@@ -45,8 +45,13 @@ class LoginActivity : AppCompatActivity() {
             loginUser(email, password)
         }
 
+        //handle login google
+        binding.loginGoogle.setOnClickListener{
+            Toast.makeText(this, "Tombol Login Google", Toast.LENGTH_SHORT).show()
+        }
+
         // Handle klik tombol daftar
-        binding.daftarButton.setOnClickListener {
+        binding.daftarTextView.setOnClickListener {
             goToRegisterActivity()
         }
 

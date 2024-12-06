@@ -4,23 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BerandaActivity">
+    tools:context=".JadwalActivity">
 
     <!-- AppBar -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
 
         <!-- Toolbar -->
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:title="Halaman Beranda"
-            android:titleTextColor="@android:color/white"
-            app:navigationIcon="@drawable/fotojadwal" />
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:titleTextColor="@color/grey"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <!-- Kontainer untuk ikon dan teks -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical">
+
+                <!-- Ikon navigasi -->
+                <ImageView
+                    android:id="@+id/BackIcon"
+                    android:layout_width="22dp"
+                    android:layout_height="21dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/fotojadwal" />
+
+                <!-- Teks "Jadwal" -->
+                <TextView
+                    android:id="@+id/toolbarText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jadwal"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -29,23 +64,24 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         android:layout_marginTop="70dp"
+        android:background="#FFFFFF"
         android:dateTextAppearance="@style/CalendarDateText" />
 
+    <!-- Bottom Sheet -->
     <FrameLayout
         android:id="@+id/sheet"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        android:background="@drawable/rounded2">
+        android:background="@drawable/rounded2"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <!-- Gambar di Top Bottom Sheet -->
+        <!-- Indikator Tarikan -->
         <ImageView
             android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:scaleType="centerCrop"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
             android:src="@drawable/ic_baseline_remove_25" />
 
         <!-- Konten Bottom Sheet -->
@@ -55,26 +91,25 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/jadwalHeader"
+            <!-- Spinner untuk Memilih Jadwal -->
+            <Spinner
+                android:id="@+id/eventSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#990000"
-                android:text="Jadwal Acara"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF" />
+                android:layout_marginBottom="8dp"
+                android:spinnerMode="dropdown" />
 
-            <!-- RecyclerView untuk Daftar Acara -->
+            <!-- RecyclerView untuk Menampilkan Detail Acara -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/eventRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:scrollbars="vertical" />
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                android:paddingBottom="16dp"
+                tools:listitem="@layout/item_calendar_event"/>
+
         </LinearLayout>
-
     </FrameLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
