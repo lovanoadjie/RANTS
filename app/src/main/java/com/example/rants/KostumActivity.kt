@@ -1,12 +1,9 @@
 package com.example.rants
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.rants.databinding.ActivityKostumBinding
 
 class KostumActivity : AppCompatActivity() {
@@ -16,6 +13,9 @@ class KostumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityKostumBinding.inflate(layoutInflater)
 
+        binding.pesankostumButton.setOnClickListener{
+            goToWhaynotcarouselActivity()
+        }
         setContentView(binding.root)
         val toolbar = findViewById<Toolbar>(R.id.toolbar1)
         setSupportActionBar(toolbar)
@@ -25,6 +25,12 @@ class KostumActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+
+    }
+    private fun goToWhaynotcarouselActivity() {
+        val intent = Intent(this, WhaynotcarouselActivity::class.java)
+        startActivity(intent)
     }
 }
+
 

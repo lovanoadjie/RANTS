@@ -66,6 +66,13 @@ private val slideHandler = Handler()
             }
         })
 
+        binding.JadwalButton.setOnClickListener(){
+            goToJadwalActivity()
+        }
+        binding.mesegeBtn.setOnClickListener(){
+            goToChatadminActivity()
+        }
+
 
         }
 
@@ -119,15 +126,17 @@ private val slideHandler = Handler()
             }
         }
 
-        binding.JadwalButton.setOnClickListener(){
-            goToJadwalActivity()
-        }
     }
     private fun goToJadwalActivity(){
         val intent = Intent(this, JadwalActivity::class.java).also {
             startActivity(it)
         }
-
     }
+    private fun goToChatadminActivity(){
+        val intent = Intent(this, ChatadminActivity::class.java).also {
+            startActivity(it)
+        }
+    }
+
 
 }
