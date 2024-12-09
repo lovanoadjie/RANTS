@@ -14,9 +14,15 @@ class RiwayatActyvity : AppCompatActivity() {
     private lateinit var binding: RiwayatActyvityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        overridePendingTransition(0, 0)
+
+
         super.onCreate(savedInstanceState)
         binding = RiwayatActyvityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNavigation.selectedItemId = R.id.bottom_riwayat
+
         setupBottomNavigation()
         }
     private fun setupBottomNavigation() {
@@ -26,10 +32,17 @@ class RiwayatActyvity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.bottom_beranda -> {
                     startActivity(Intent(this, BerandaActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.bottom_pesan -> {
                     startActivity(Intent(this, PesanActivity::class.java))
+                    finish()
+                    true
+                }
+                R.id.bottom_profil -> {
+                    startActivity(Intent(this, ProfilActivity::class.java))
+                    finish()
                     true
                 }
 

@@ -13,8 +13,14 @@ class PesanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        overridePendingTransition(0, 0)
+
+
         binding = ActivityPesanBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNavigation.selectedItemId = R.id.bottom_pesan
+
 
         binding.sewakostumButton1.setOnClickListener(){
             goToKostumActivity()
@@ -35,15 +41,21 @@ class PesanActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.bottom_beranda-> {
                     startActivity(Intent(this, BerandaActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.bottom_riwayat-> {
                     startActivity(Intent(this, RiwayatActyvity::class.java))
+                    finish()
+                    true
+                }
+                R.id.bottom_profil-> {
+                    startActivity(Intent(this, ProfilActivity::class.java))
+                    finish()
                     true
                 }
                 else -> false
             }
         }
     }
-
 }

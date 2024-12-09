@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.rants.databinding.ActivityBerandaBinding
@@ -33,6 +34,8 @@ private val slideHandler = Handler()
         super.onCreate(savedInstanceState)
         binding = ActivityBerandaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        overridePendingTransition(0, 0)
 
         listGambar.add(
             ImageData(
@@ -63,6 +66,13 @@ private val slideHandler = Handler()
                 slideHandler.postDelayed(sliderRun,3000)
             }
         })
+
+        binding.JadwalButton.setOnClickListener(){
+            goToJadwalActivity()
+        }
+        binding.mesegeBtn.setOnClickListener(){
+            goToChatadminActivity()
+        }
 
 
         }
@@ -100,11 +110,17 @@ private val slideHandler = Handler()
             when (item.itemId) {
                 R.id.bottom_pesan-> {
                     startActivity(Intent(this, PesanActivity::class.java))
+                    finish()
                     true
-
                 }
                 R.id.bottom_riwayat-> {
                     startActivity(Intent(this, RiwayatActyvity::class.java))
+                    finish()
+                    true
+                }
+                R.id.bottom_profil-> {
+                    startActivity(Intent(this, ProfilActivity::class.java))
+                    finish()
                     true
                 }
                 else -> false
@@ -112,5 +128,16 @@ private val slideHandler = Handler()
         }
 
     }
+    private fun goToJadwalActivity(){
+        val intent = Intent(this, JadwalActivity::class.java).also {
+            startActivity(it)
+        }
+    }
+    private fun goToChatadminActivity(){
+        val intent = Intent(this, ChatadminActivity::class.java).also {
+            startActivity(it)
+        }
+    }
+
 
 }

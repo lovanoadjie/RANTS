@@ -6,7 +6,7 @@
     android:id="@+id/ac"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PesanActivity">
+    tools:context=".ProfilActivity">
 
     <!-- AppBarLayout -->
     <com.google.android.material.appbar.AppBarLayout
@@ -17,22 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar1"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/pesankostum"
-            android:title="Halaman Beranda"
-            android:titleTextColor="@android:color/white"
-            app:navigationIcon="@drawable/fotojadwal" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Scrollable Content -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/app_bar"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,152 +35,190 @@
             android:orientation="vertical"
             android:padding="10dp">
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view1"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
-                app:cardBackgroundColor="@color/dark"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
 
-                <GridLayout
-                    android:layout_width="196dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:columnCount="1"
-                    android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <!-- Single CardView -->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="1dp"
-                        app:cardCornerRadius="10dp"
-                        >
+                        android:id="@+id/card_view1"
+                        android:layout_width="92dp"
+                        android:layout_height="93dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@android:color/transparent"
+                        app:cardBackgroundColor="@color/dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <LinearLayout
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                        <GridLayout
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center_horizontal"
+                            android:columnCount="1"
+                            android:orientation="horizontal">
 
-                        </LinearLayout>
+                            <!-- Single CardView -->
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:layout_margin="1dp"
+                                app:cardCornerRadius="10dp"
+                                >
+                            </androidx.cardview.widget.CardView>
+
+                            <ImageView
+                                android:layout_width="95dp"
+                                android:layout_height="95dp"
+                                android:layout_row="0"
+                                android:layout_column="0"
+                                android:background="@color/white"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/riwayat" />
+
+                        </GridLayout>
+
                     </androidx.cardview.widget.CardView>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_row="0"
-                        android:layout_column="0"
-                        android:background="@color/white"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/riwayat" />
-
-                </GridLayout>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view2"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
-                app:cardBackgroundColor="@color/dark"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
 
-                <GridLayout
-                    android:layout_width="196dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:columnCount="1"
-                    android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <!-- Single CardView -->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="1dp"
-                        app:cardCornerRadius="10dp"
-                        >
+                        android:id="@+id/card_view2"
+                        android:layout_width="92dp"
+                        android:layout_height="93dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@android:color/transparent"
+                        app:cardBackgroundColor="@color/dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <LinearLayout
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                        <GridLayout
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center_horizontal"
+                            android:columnCount="1"
+                            android:orientation="horizontal">
 
-                        </LinearLayout>
+                            <!-- Single CardView -->
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:layout_margin="1dp"
+                                app:cardCornerRadius="10dp"
+                                >
+                            </androidx.cardview.widget.CardView>
+
+                            <ImageView
+                                android:layout_width="95dp"
+                                android:layout_height="95dp"
+                                android:layout_row="0"
+                                android:layout_column="0"
+                                android:background="@color/white"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/riwayat1" />
+
+                        </GridLayout>
+
                     </androidx.cardview.widget.CardView>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_row="0"
-                        android:layout_column="0"
-                        android:background="@color/white"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/riwayat" />
-
-                </GridLayout>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view3"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
-                app:cardBackgroundColor="@color/dark"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
 
-                <GridLayout
-                    android:layout_width="196dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:columnCount="1"
-                    android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <!-- Single CardView -->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="1dp"
-                        app:cardCornerRadius="10dp"
-                        >
+                        android:id="@+id/card_view3"
+                        android:layout_width="92dp"
+                        android:layout_height="93dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@android:color/transparent"
+                        app:cardBackgroundColor="@color/dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <LinearLayout
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                        <GridLayout
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center_horizontal"
+                            android:columnCount="1"
+                            android:orientation="horizontal">
 
-                        </LinearLayout>
+                            <!-- Single CardView -->
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:layout_margin="1dp"
+                                app:cardCornerRadius="10dp"
+                                >
+                            </androidx.cardview.widget.CardView>
+
+                            <ImageView
+                                android:layout_width="95dp"
+                                android:layout_height="95dp"
+                                android:layout_row="0"
+                                android:layout_column="0"
+                                android:background="@color/white"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/riwayat2" />
+
+                        </GridLayout>
+
                     </androidx.cardview.widget.CardView>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_row="0"
-                        android:layout_column="0"
-                        android:background="@color/white"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/riwayat" />
-
-                </GridLayout>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+
     </ScrollView>
 
     <!-- Bottom Navigation -->
@@ -201,7 +230,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_menu"
-        app:labelVisibilityMode="labeled"
-        app:elevation="8dp" />
+        app:itemIconTint="@drawable/navbar_icon_tint"
+        app:itemTextColor="@drawable/navbar_icon_tint"
+        app:elevation="8dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3" />
+</com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

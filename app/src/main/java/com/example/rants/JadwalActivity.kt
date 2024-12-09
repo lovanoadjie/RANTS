@@ -29,6 +29,11 @@ class JadwalActivity : AppCompatActivity() {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
+        bottomSheetBehavior.apply {
+            peekHeight = 350   // Set peek height
+            state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
+        }
+
         // Setup Toolbar Back Button
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
