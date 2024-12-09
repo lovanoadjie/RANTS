@@ -29,6 +29,11 @@ class JadwalActivity : AppCompatActivity() {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
+        bottomSheetBehavior.apply {
+            peekHeight = 350   // Set peek height
+            state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
+        }
+
         // Setup Toolbar Back Button
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
@@ -46,7 +51,7 @@ class JadwalActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Calendar>>, response: Response<List<Calendar>>) {
                 if (response.isSuccessful) {
                     val calendars = response.body()
-                    if (calendars != null && calendars.isNotEmpty()) {
+                    if (!calendars.isNullOrEmpty()) {
                         setupSpinner(calendars)
                     } else {
                         Toast.makeText(this@JadwalActivity, "Tidak ada data jadwal", Toast.LENGTH_SHORT).show()

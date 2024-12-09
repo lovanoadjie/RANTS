@@ -139,7 +139,12 @@
         app:menu="@menu/bottom_menu"
         app:itemIconTint="@drawable/navbar_icon_tint"
         app:itemTextColor="@drawable/navbar_icon_tint"
-        app:elevation="8dp" />
+        app:elevation="8dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     
 </androidx.constraintlayout.widget.ConstraintLayout>

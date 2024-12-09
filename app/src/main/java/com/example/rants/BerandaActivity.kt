@@ -35,6 +35,7 @@ private val slideHandler = Handler()
         binding = ActivityBerandaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        overridePendingTransition(0, 0)
 
         listGambar.add(
             ImageData(

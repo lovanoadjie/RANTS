@@ -20,6 +20,12 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- Define custom shadow for Toolbar -->
+    <style name="ToolbarShadow" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:elevation">8dp</item>  <!-- Adjust elevation for shadow intensity -->
+        <item name="android:translationZ">4dp</item> <!-- Add translationZ for more shadow depth -->
+    </style>
+
     <style name="TextAppearance">m</style>
 
 

@@ -15,6 +15,8 @@ class ProfilActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigation.selectedItemId = R.id.bottom_profil
         setupBottomNavigation()
+        overridePendingTransition(0, 0)
+
     }
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)

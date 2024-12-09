@@ -67,16 +67,27 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText = binding.editText2
         val showPasswordCheckbox = binding.showPasswordCheckbox
 
+        // Set inputType untuk password di awal (secara default password disembunyikan)
+        passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+        // Pastikan kursor berada di akhir teks saat password diatur
+        passwordEditText.setSelection(passwordEditText.text.length)
+
+        // Menambahkan listener untuk checkbox
         showPasswordCheckbox.setOnCheckedChangeListener { _, isChecked ->
             passwordEditText.inputType = if (isChecked) {
+                // Jika checkbox dicentang, tampilkan password
                 InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             } else {
+                // Jika checkbox tidak dicentang, sembunyikan password
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
+
             // Mengatur posisi kursor tetap di akhir teks
             passwordEditText.setSelection(passwordEditText.text.length)
         }
     }
+
 
     private fun loginUser(email: String, password: String) {
         val apiService = ApiConfig.getRetrofit().create(ApiService::class.java)
