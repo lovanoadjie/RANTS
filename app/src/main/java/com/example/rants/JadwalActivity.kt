@@ -46,7 +46,7 @@ class JadwalActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Calendar>>, response: Response<List<Calendar>>) {
                 if (response.isSuccessful) {
                     val calendars = response.body()
-                    if (calendars != null && calendars.isNotEmpty()) {
+                    if (!calendars.isNullOrEmpty()) {
                         setupSpinner(calendars)
                     } else {
                         Toast.makeText(this@JadwalActivity, "Tidak ada data jadwal", Toast.LENGTH_SHORT).show()
