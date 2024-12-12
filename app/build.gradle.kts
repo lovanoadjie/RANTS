@@ -58,4 +58,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation("me.relex:circleindicator:2.1.6")
     implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+
 }

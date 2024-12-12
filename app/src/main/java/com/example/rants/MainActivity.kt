@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private fun goToLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java).also {
             startActivity(it)
+            finish() // Ensure you call finish after starting the next activity
+
         }
 
     }

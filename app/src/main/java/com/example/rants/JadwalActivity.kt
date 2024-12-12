@@ -4,55 +4,70 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.FrameLayout
+import android.widget.CalendarView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rants.api.ApiConfig
+import com.example.rants.api.ApiService
 import com.example.rants.model.Calendar
 import com.example.rants.databinding.ActivityJadwalBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class JadwalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJadwalBinding
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
+    private lateinit var selectedDate: String // Menyimpan tanggal yang dipilih
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityJadwalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Setup BottomSheetBehavior
-        val bottomSheet = findViewById<FrameLayout>(R.id.sheet)
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.sheet)
+        // Apply settings to the BottomSheetBehavior
         bottomSheetBehavior.apply {
             peekHeight = 350   // Set peek height
             state = BottomSheetBehavior.STATE_COLLAPSED  // Set initial state
+        }
+
+        // Setup Toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Setup CalendarView untuk memilih tanggal
+        binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth -> val calendar = java.util.Calendar.getInstance()
+            calendar.set(year, month, dayOfMonth)
+
+            // Format tanggal yang dipilih menjadi string
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            selectedDate = dateFormat.format(calendar.time)
+
+            // Panggil API dengan tanggal yang dipilih
+            fetchCalendarData(selectedDate)
         }
 
         // Setup Toolbar Back Button
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
-
-        // Ambil data jadwal dari API
-        fetchCalendarData()
     }
 
-    private fun fetchCalendarData() {
-        val apiService = ApiConfig.getRetrofit().create(com.example.rants.api.ApiService::class.java)
-        val call = apiService.getCalendars()
+    // Fungsi untuk mendapatkan data berdasarkan tanggal
+    private fun fetchCalendarData(date: String) {
+        val apiService = ApiConfig.getRetrofit().create(ApiService::class.java)
+        val call = apiService.getCalendars(date)
 
         call.enqueue(object : Callback<List<Calendar>> {
             override fun onResponse(call: Call<List<Calendar>>, response: Response<List<Calendar>>) {
                 if (response.isSuccessful) {
                     val calendars = response.body()
                     if (!calendars.isNullOrEmpty()) {
-                        setupSpinner(calendars)
+                        setupRecyclerView(calendars)
                     } else {
                         Toast.makeText(this@JadwalActivity, "Tidak ada data jadwal", Toast.LENGTH_SHORT).show()
                     }
@@ -67,24 +82,16 @@ class JadwalActivity : AppCompatActivity() {
         })
     }
 
-    private fun setupSpinner(calendars: List<Calendar>) {
-        val eventTitles = calendars.map { "${it.title} - ${it.date}" }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, eventTitles)
-        binding.eventSpinner.adapter = adapter
+    // Setup RecyclerView
+    private fun setupRecyclerView(calendars: List<Calendar>) {
+        val recyclerView = binding.eventRecyclerView
 
-        binding.eventSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val selectedEvent = calendars[position]
-                Toast.makeText(
-                    this@JadwalActivity,
-                    "Judul: ${selectedEvent.title}\nTanggal: ${selectedEvent.date}\nDeskripsi: ${selectedEvent.description}",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+        // Set layout manager
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Tidak ada aksi
-            }
-        }
+        // Set adapter
+        val adapter = CalendarAdapter() // Instantiate your adapter here
+        adapter.setData(calendars) // Pass data to the adapter
+        recyclerView.adapter = adapter
     }
 }

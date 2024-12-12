@@ -13,6 +13,10 @@ class ProfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfilBinding.inflate(layoutInflater) // Pastikan nama ini sesuai dengan file binding
         setContentView(binding.root)
+
+        binding.ubahprofilButton.setOnClickListener(){
+            goToEditprofilActivity()
+        }
         binding.bottomNavigation.selectedItemId = R.id.bottom_profil
         setupBottomNavigation()
         overridePendingTransition(0, 0)
@@ -41,7 +45,15 @@ class ProfilActivity : AppCompatActivity() {
 
                 else -> false
             }
+
         }
+
+    }
+    private fun goToEditprofilActivity() {
+        val intent = Intent(this, EditprofilActivity::class.java).also {
+            startActivity(it)
+        }
+
     }
 
 }

@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.rants.databinding.ActivityPesanBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+@Suppress("DEPRECATION")
 class PesanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPesanBinding
 
