@@ -18,44 +18,29 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#FFFFFF"
-            android:elevation="4dp"
-            android:titleTextColor="@color/grey"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:title="KOSTUM"
+            android:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/fotojadwal"
+            app:elevation="4dp"
+            android:theme="@style/ToolbarShadow" >
 
-            <!-- Kontainer untuk ikon dan teks -->
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="start|center_vertical">
-
-                <!-- Ikon navigasi -->
-                <ImageView
-                    android:id="@+id/BackIcon"
-                    android:layout_width="22dp"
-                    android:layout_height="21dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/fotojadwal" />
-
-                <!-- Teks "Jadwal" -->
-                <TextView
-                    android:id="@+id/toolbarText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jadwal"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_gravity="center_vertical"/>
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="18dp"
+                android:text="Jadwal"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -76,40 +61,37 @@
         android:background="@drawable/rounded2"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <!-- Indikator Tarikan -->
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_baseline_remove_25" />
-
         <!-- Konten Bottom Sheet -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Spinner untuk Memilih Jadwal -->
-            <Spinner
-                android:id="@+id/eventSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:spinnerMode="dropdown" />
-
             <!-- RecyclerView untuk Menampilkan Detail Acara -->
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/rounded_view" /> <!-- Gunakan drawable yang baru -->
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/eventRecyclerView"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:clipToPadding="false"
-                android:scrollbars="vertical"
                 android:paddingBottom="16dp"
                 tools:listitem="@layout/item_calendar_event"/>
 
+
+
         </LinearLayout>
+
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

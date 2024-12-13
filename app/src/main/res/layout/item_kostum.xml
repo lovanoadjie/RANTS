@@ -1,11 +1,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/m"
+    android:id="@+id/produk"
     android:layout_width="170dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="4dp"
     app:cardCornerRadius="10dp"
-    android:layout_margin="16dp">
+    android:layout_marginLeft="7dp"
+    android:layout_marginTop="10dp">
 
     <LinearLayout
         android:orientation="vertical"

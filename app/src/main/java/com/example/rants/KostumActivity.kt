@@ -1,8 +1,10 @@
 package com.example.rants
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,6 +28,8 @@ class KostumActivity : AppCompatActivity() {
 
         // Setup Toolbar
         setSupportActionBar(binding.toolbar1)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         // Setup RecyclerView
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
@@ -35,7 +39,7 @@ class KostumActivity : AppCompatActivity() {
     }
 
     private fun getProductsFromApi() {
-        Log.d("API Response", "Raw Response: pepk")
+        Log.d("API Response", "Raw Response: test")
 
         val apiService = ApiConfig.getProducts().create(ApiService::class.java)
         apiService.getProducts().enqueue(object : Callback<List<Product>> {
@@ -49,9 +53,9 @@ class KostumActivity : AppCompatActivity() {
                     if (responseBody != null && responseBody.isNotEmpty()) {
                         productAdapter = ProductAdapter(responseBody)
                         binding.recyclerView.adapter = productAdapter
-                        Log.d("API Response", "Raw Response: kont")
+                        Log.d("API Response", "Raw Response: qwerty")
                     } else {
-                        Log.d("API Response", "Raw Response: jem")
+                        Log.d("API Response", "Raw Response: uiop")
 
                         Toast.makeText(this@KostumActivity, "Tidak ada produk ditemukan", Toast.LENGTH_SHORT).show()
                     }
@@ -65,6 +69,19 @@ class KostumActivity : AppCompatActivity() {
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 Toast.makeText(this@KostumActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
+
+
         })
+
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.home -> {
+                // Menangani aksi tombol back
+                onBackPressed()  // Fungsi ini akan membawa pengguna kembali ke halaman sebelumnya
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

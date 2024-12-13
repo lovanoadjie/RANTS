@@ -1,37 +1,11 @@
-
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme untuk mode gelap -->
+    <!-- Base application theme. -->
     <style name="Base.Theme.RANTS" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Menggunakan warna gelap untuk background di mode gelap -->
-        <item name="colorPrimary">@android:color/black</item>
-        <item name="android:windowBackground">@android:color/black</item>
-
-        <!-- Mengatur warna teks di mode gelap -->
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-
-        <!-- Menyesuaikan warna ikon di mode gelap -->
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorOnBackground">@android:color/white</item>
-
-        <item name="colorSecondary">@color/blue</item>
-        <item name="colorSecondaryVariant">@color/blue</item>
-
-        <!-- Menyesuaikan warna status bar untuk mode gelap -->
-        <item name="android:statusBarColor">@android:color/black</item>
-        <item name="android:windowLightStatusBar">false</item> <!-- Ikon status bar menjadi terang agar kontras dengan latar belakang hitam -->
+        <!-- Transparent system bars for edge-to-edge. -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
     </style>
-    <style name="Base.Theme.RANTS.Night" parent="Base.Theme.RANTS">
-        <!-- Menggunakan warna gelap untuk background di mode gelap -->
-        <item name="colorPrimary">@android:color/black</item>
-        <item name="android:windowBackground">@android:color/white</item> <!-- Menggunakan windowBackground yang lebih tepat -->
 
-        <!-- Mengatur warna teks di mode gelap -->
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-
-        <!-- Menyesuaikan warna ikon di mode gelap -->
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorOnBackground">@android:color/white</item>
-    </style>
+    <style name="Theme.RANTS" parent="Base.Theme.RANTS" />
 </resources>

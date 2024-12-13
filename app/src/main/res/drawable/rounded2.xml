@@ -14,7 +14,7 @@
     <!-- Latar belakang dengan sudut membulat -->
     <item android:top="1dp">
         <shape>
-            <solid android:color="@color/marron" />
+            <solid android:color="@color/white" />
             <corners
                 android:topLeftRadius="40dp"
                 android:topRightRadius="40dp" />
