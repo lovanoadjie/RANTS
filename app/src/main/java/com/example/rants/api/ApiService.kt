@@ -1,12 +1,14 @@
 package com.example.rants.api
 
-import com.example.rants.ImageData
 import com.example.rants.model.AuthResponse
 import com.example.rants.model.Calendar
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
-import com.example.rants.model.Product
+import com.example.rants.model.MakeupResponse
+import com.example.rants.model.ProductResponse
+import com.example.rants.model.TariResponse
+import com.example.rants.model.kosta
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,9 +22,16 @@ interface ApiService {
     @GET("acara/{tanggal}")
     fun getCalendars(@Path("tanggal") tanggal: String): Call<List<Calendar>>
 
-    @GET("products")
-    fun getProducts(): Call<List<Product>>
+    @GET("tari/all")
+    fun getTari(): Call<TariResponse>
+
+    @GET("makeup/all")
+    fun getMakeup(): Call<MakeupResponse>
+
+    @GET("kostum/all")
+    fun getProducts(): Call<ProductResponse>
 
     @GET("galleries")
     fun getGalleries(): Call<GalleryResponse>
+
 }

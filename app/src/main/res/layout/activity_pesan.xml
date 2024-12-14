@@ -55,7 +55,7 @@
                 android:layout_marginTop="60dp"
                 app:backgroundTint="@null"
                 android:background="@drawable/rounded_psan"
-                android:text="Sewa Penari"
+                android:text="Jasa Tari"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins"
                 android:textStyle="bold" />
@@ -99,7 +99,7 @@
                 android:layout_marginTop="60dp"
                 app:backgroundTint="@null"
                 android:background="@drawable/rounded_psan"
-                android:text="Sewa Kostum"
+                android:text="Kostum"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins"
                 android:textStyle="bold" />
@@ -142,7 +142,7 @@
                 android:layout_marginTop="60dp"
                 app:backgroundTint="@null"
                 android:background="@drawable/rounded_psan"
-                android:text="Sewa Make Up"
+                android:text="Make Up"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins"
                 android:textStyle="bold" />

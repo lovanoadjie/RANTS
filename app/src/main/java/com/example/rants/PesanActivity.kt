@@ -23,17 +23,33 @@ class PesanActivity : AppCompatActivity() {
         binding.bottomNavigation.selectedItemId = R.id.bottom_pesan
 
 
+        binding.sewapenariButton.setOnClickListener(){
+            goToJasatariActivity()
+        }
         binding.sewakostumButton1.setOnClickListener(){
             goToKostumActivity()
+        }
+
+        binding.sewamakeupButton2.setOnClickListener(){
+            goToMakeupActivity()
         }
         setupBottomNavigation()
     }
 
+    private fun goToMakeupActivity() {
+        val intent = Intent(this, MakeupActivity::class.java).also {
+            startActivity(it)    }
+    }
+
+    private fun goToJasatariActivity() {
+        val intent = Intent(this, JasatariActivity::class.java).also {
+            startActivity(it)
+        }
+    }
     private fun goToKostumActivity() {
         val intent = Intent(this, KostumActivity::class.java).also {
             startActivity(it)
         }
-
     }
 
     private fun setupBottomNavigation() {
