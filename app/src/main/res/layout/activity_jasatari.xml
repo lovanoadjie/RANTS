@@ -14,7 +14,7 @@
         android:padding="10dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
-        tools:listitem="@layout/item_kostum">
+        tools:listitem="@layout/item_tari">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginTop="18dp"
-                android:text="Kostum"
+                android:text="Penari"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </androidx.appcompat.widget.Toolbar>

@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rants.api.ApiConfig
 import com.example.rants.databinding.ItemImageBinding
 import com.example.rants.databinding.ListSlideBinding
 import com.example.rants.model.Gallery
+
 class ImageAdapter(private val listGambar: ArrayList<Gallery>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -25,8 +27,8 @@ class ImageAdapter(private val listGambar: ArrayList<Gallery>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val gallery = listGambar[position]
-        val baseUrl =  "http://192.168.208.91:8000/storage/" // Replace with your actual API base URL
-        val imageUrl = baseUrl + gallery.image
+        val baseUrl =  "http://192.168.137.128:8000/storage/" // Replace with your actual API base URL
+        val imageUrl = ApiConfig.getImageUrl() + gallery.image
         // Assuming you're using Glide to load images
         Log.d("ImageAdapter", "Image URL: $imageUrl") // Log the image URL
 
@@ -36,7 +38,9 @@ class ImageAdapter(private val listGambar: ArrayList<Gallery>) : RecyclerView.Ad
 
         // If you want to display descriptions, you can bind them too
 //        holder.binding.textViewDescription.text = gallery.description
+
     }
+
 
     override fun getItemCount(): Int = listGambar.size
 

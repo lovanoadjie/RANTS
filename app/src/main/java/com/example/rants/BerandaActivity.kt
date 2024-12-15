@@ -24,7 +24,7 @@ import com.example.rants.api.ApiService
 import com.example.rants.databinding.ActivityBerandaBinding
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
-import com.example.rants.model.Product
+import com.example.rants.model.kosta
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import retrofit2.Call
@@ -39,6 +39,7 @@ import kotlin.collections.ArrayList
 @Suppress("DEPRECATION")
 class BerandaActivity : AppCompatActivity() {
 
+    private lateinit var textViewDescription: TextView
     private lateinit var binding: ActivityBerandaBinding
     private lateinit var adapter: ImageAdapter
     private var listGambar = ArrayList<Gallery>()
@@ -50,9 +51,10 @@ class BerandaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBerandaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         overridePendingTransition(0, 0)
+
+        textViewDescription = binding.textViewDescription
 
         // Inisialisasi viewPager
         viewPager = findViewById(R.id.view_pager)
@@ -64,12 +66,6 @@ class BerandaActivity : AppCompatActivity() {
         // Menggunakan adapter untuk ViewPager
         adapter = ImageAdapter(listGambar)
         viewPager.adapter = adapter
-
-        // Inisialisasi ViewPager dan adapter
-//        viewPager = binding.viewPager
-//        listGambar = ArrayList()
-//        adapter = ImageAdapter(listGambar)
-
 
         binding.JadwalButton.setOnClickListener(){
             goToJadwalActivity()
@@ -84,14 +80,18 @@ class BerandaActivity : AppCompatActivity() {
                 selectDot(position)
                 super.onPageSelected(position)
 
+                // Update deskripsi gambar berdasarkan posisi yang dipilih
+                val currentGallery = listGambar[position]
+                binding.textViewDescription.text = currentGallery.description
+
+                Log.d("BerandaActivity", "TextView Description: ${binding.textViewDescription.text}")
+
+
                 slideHandler.removeCallbacks(sliderRun)
                 slideHandler.postDelayed(sliderRun, 3000)
             }
         })
     }
-
-
-
 
     private val sliderRun = Runnable {
         binding.viewPager.currentItem = binding.viewPager.currentItem + 1
@@ -187,11 +187,6 @@ class BerandaActivity : AppCompatActivity() {
             }
         })
     }
-
-
-
-
-
 
     private fun goToJadwalActivity() {
         val intent = Intent(this, JadwalActivity::class.java).also {
