@@ -1,6 +1,5 @@
-package com.example.rants
+package com.example.rants.adapter
 
-import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rants.api.ApiConfig
 import com.example.rants.databinding.ItemImageBinding
-import com.example.rants.databinding.ListSlideBinding
 import com.example.rants.model.Gallery
 
 class ImageAdapter(private val listGambar: ArrayList<Gallery>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
@@ -27,7 +25,7 @@ class ImageAdapter(private val listGambar: ArrayList<Gallery>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val gallery = listGambar[position]
-        val baseUrl =  "http://192.168.137.128:8000/storage/" // Replace with your actual API base URL
+//        val baseUrl =  "http://192.168.137.128:8000/storage/" // Replace with your actual API base URL
         val imageUrl = ApiConfig.getImageUrl() + gallery.image
         // Assuming you're using Glide to load images
         Log.d("ImageAdapter", "Image URL: $imageUrl") // Log the image URL

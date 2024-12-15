@@ -1,39 +1,27 @@
 package com.example.rants
 
-import android.app.TimePickerDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.text.Html
 import android.util.Log
-import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.example.rants.adapter.ProductAdapter
+import com.example.rants.adapter.ImageAdapter
 import com.example.rants.api.ApiConfig
-import com.example.rants.api.ApiResponse
 import com.example.rants.api.ApiService
 import com.example.rants.databinding.ActivityBerandaBinding
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
-import com.example.rants.model.kosta
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")

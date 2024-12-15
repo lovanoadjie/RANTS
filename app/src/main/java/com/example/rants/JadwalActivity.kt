@@ -1,13 +1,10 @@
 package com.example.rants
 
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.CalendarView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rants.adapter.CalendarAdapter
 import com.example.rants.api.ApiConfig
 import com.example.rants.api.ApiService
 import com.example.rants.model.Calendar

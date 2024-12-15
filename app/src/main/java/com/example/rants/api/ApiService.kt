@@ -2,11 +2,13 @@ package com.example.rants.api
 
 import com.example.rants.model.AuthResponse
 import com.example.rants.model.Calendar
+//import com.example.rants.model.DetailResponse
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
 import com.example.rants.model.MakeupResponse
 import com.example.rants.model.ProductResponse
+import com.example.rants.model.RegisterRequest
 import com.example.rants.model.TariResponse
 import com.example.rants.model.kosta
 import retrofit2.Call
@@ -19,6 +21,9 @@ interface ApiService {
     @POST("login")
     fun login(@Body request: LoginRequest): Call<AuthResponse>
 
+//    @POST("register")
+//    fun register(@Body request: RegisterRequest) Call<AuthResponse>
+
     @GET("acara/{tanggal}")
     fun getCalendars(@Path("tanggal") tanggal: String): Call<List<Calendar>>
 
@@ -30,6 +35,9 @@ interface ApiService {
 
     @GET("kostum/all")
     fun getProducts(): Call<ProductResponse>
+
+    @GET("kostum/{id}")
+    fun getProductDetail(@Path("id") id: Int): Call<ProductResponse>
 
     @GET("galleries")
     fun getGalleries(): Call<GalleryResponse>

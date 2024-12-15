@@ -11,6 +11,8 @@ import com.example.rants.databinding.ItemKostumBinding
 // Adapter untuk RecyclerView
 class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
+    var onItemClick: ((kosta) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemKostumBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProductViewHolder(binding)
@@ -18,11 +20,16 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        val baseUrl =  "http://192.168.137.128:8000/storage/" // Replace with your actual API base URL
+        val baseUrl =  "http://192.168.1.4:8000/storage/" // Replace with your actual API base URL
         val imageUrl = baseUrl + product.image // Concatenate base URL with image path
         Log.d("ImageAdapter", "Image URL: $imageUrl")
 
-        holder.bind(product, imageUrl) // Pass the full image URL to bind()
+        holder.bind(product, imageUrl)
+
+        // Handle click on the item
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(product) // Pass the clicked product
+        }
     }
 
     override fun getItemCount(): Int = productList.size
@@ -44,4 +51,5 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
                 .into(binding.image)
         }
     }
+
 }

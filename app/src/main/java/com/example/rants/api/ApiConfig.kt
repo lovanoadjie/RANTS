@@ -6,11 +6,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
-    private const val BASE_URL = "http://192.168.137.128:8000/api/"
+    private const val BASE_URL = "http://192.168.1.4:8000/api/"
+
     fun  getImageUrl(): String{
 
-        return "http://192.168.137.128:8000/storage/"
-    }    fun getRetrofitInstance(): Retrofit {
+        return "http://192.168.1.4:8000/storage/"
+    }
+    fun getRetrofitInstance(): Retrofit {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -20,8 +22,8 @@ object ApiConfig {
 
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(client)  // Menambahkan client dengan interceptor
-            .addConverterFactory(GsonConverterFactory.create())  // Converter JSON ke objek Kotlin
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
@@ -47,6 +49,13 @@ object ApiConfig {
     }
 
     fun getProducts(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    fun getProductDetails(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

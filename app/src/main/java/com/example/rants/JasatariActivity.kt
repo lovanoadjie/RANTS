@@ -2,6 +2,7 @@ package com.example.rants
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +33,7 @@ class JasatariActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup Toolbar
-        setSupportActionBar(binding.toolbar1)
+        setSupportActionBar(binding.toolbar3)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Setup RecyclerView
@@ -40,6 +41,18 @@ class JasatariActivity : AppCompatActivity() {
 
         getTariFromApi()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Kembali ke PesanActivity
+                onBackPressed() // Fungsi ini akan menyelesaikan aktivitas saat ini dan kembali ke aktivitas sebelumnya
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
     private fun getTariFromApi() {
         Log.d("API Response", "Fetching products...")

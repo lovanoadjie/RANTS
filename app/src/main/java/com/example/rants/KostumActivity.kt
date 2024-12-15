@@ -48,10 +48,24 @@ class KostumActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null && responseBody.data.isNotEmpty()) {
-                        // Now use responseBody.data to populate the RecyclerView
+                        // Inisialisasi productAdapter setelah mendapatkan data dari API
                         productAdapter = ProductAdapter(responseBody.data)
+
+                        // Mengatur RecyclerView dengan adapter yang sudah diinisialisasi
                         binding.recyclerView.layoutManager = LinearLayoutManager(this@KostumActivity)
                         binding.recyclerView.adapter = productAdapter
+
+                        // Menangani item click setelah adapter siap
+                        productAdapter.onItemClick = { product ->
+                            Log.d("KostumActivity", "Sending Product ID: ${product.id}") // Log ID yang akan dikirim
+                            val intent = Intent(this@KostumActivity, DetailActivity::class.java)
+                            intent.putExtra("product_id", product.id) // Pastikan ID tidak null atau 0
+                            startActivity(intent)
+                        }
+
+                        responseBody.data.forEach { product ->
+                            Log.d("API Response", "Product ID: ${product.id}, Name: ${product.nama_kostum}")
+                        }
                     } else {
                         Log.d("API Response", "No products found")
                         Toast.makeText(this@KostumActivity, "Tidak ada produk ditemukan", Toast.LENGTH_SHORT).show()
@@ -62,11 +76,9 @@ class KostumActivity : AppCompatActivity() {
                 }
             }
 
-
-
             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
                 Log.e("Kostum Activity", "Error: ${t.message}")
-                t.printStackTrace() // Mencetak stack trace untuk debugging lebih lanjut
+                t.printStackTrace()
                 Toast.makeText(this@KostumActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
@@ -75,11 +87,12 @@ class KostumActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.home -> {
-                // Menangani aksi tombol back
-                onBackPressed()  // Fungsi ini akan membawa pengguna kembali ke halaman sebelumnya
+                onBackPressed()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 }
+
+
