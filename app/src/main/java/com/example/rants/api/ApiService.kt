@@ -7,6 +7,7 @@ import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
 import com.example.rants.model.MakeupResponse
 import com.example.rants.model.ProductResponse
+import com.example.rants.model.RegisterRequest
 import com.example.rants.model.TariResponse
 import com.example.rants.model.kosta
 import retrofit2.Call
@@ -14,7 +15,6 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.*
 
 interface ApiService {
     @POST("login")
@@ -35,46 +35,7 @@ interface ApiService {
     @GET("galleries")
     fun getGalleries(): Call<GalleryResponse>
 
-<<<<<<< HEAD
-    // Mendapatkan semua kostum
-    @GET("kostum/all")
-    fun getKostum(): Call<List<Product>>
+    @POST("register")
+    fun register(@Body registerRequest: RegisterRequest): Call<AuthResponse>
 
-    // Mendapatkan detail kostum berdasarkan ID
-    @GET("kostum/{id}")
-    fun getKostumDetail(@Path("id") id: Int): Call<Product>
-
-    // Menambahkan kostum baru
-    @GET("kosta")
-    fun addKostum(@Body kostum: Product): Call<Product>
-
-    // Mengupdate kostum
-    @PUT("kosta/{id}")
-    fun updateKosta(@Path("id") id: Int, @Body kostum: Product): Call<Product>
-
-    // Menghapus kostum
-    @DELETE("kosta/{id}")
-    fun deleteKosta(@Path("id") id: Int): Call<Void>
-
-    // Mendapatkan semua kostum
-    @GET("kosta")
-    fun getKosta(): Call<List<Product>>
-
-    // Mendapatkan detail kostum berdasarkan ID
-    @GET("kosta/{id}")
-    fun getKostaDetail(@Path("id") id: Int): Call<Product>
-
-    // Menambahkan kostum baru
-    @POST("kosta")
-    fun addKosta(@Body kostum: Product): Call<Product>
-
-    // Mengupdate kostum
-    @PUT("kosta/{id}")
-    fun updateKostum(@Path("id") id: Int, @Body kostum: Product): Call<Product>
-
-    // Menghapus kostum
-    @DELETE("kostum/{id}")
-    fun deleteKostum(@Path("id") id: Int): Call<Void>
-=======
->>>>>>> 20ddc8895f9f437224f304221c13169af316b00a
 }
