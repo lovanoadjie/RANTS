@@ -7,6 +7,7 @@ import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
 import com.example.rants.model.MakeupResponse
+import com.example.rants.model.ProductDetailResponse
 import com.example.rants.model.ProductResponse
 import com.example.rants.model.RegisterRequest
 import com.example.rants.model.TariResponse
@@ -37,9 +38,11 @@ interface ApiService {
     fun getProducts(): Call<ProductResponse>
 
     @GET("kostum/{id}")
-    fun getProductDetail(@Path("id") id: Int): Call<ProductResponse>
+    fun getProductById(@Path("id") productId: Int): Call<ProductDetailResponse>
 
     @GET("galleries")
     fun getGalleries(): Call<GalleryResponse>
+
+
 
 }

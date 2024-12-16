@@ -20,23 +20,21 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        val baseUrl =  "http://192.168.1.4:8000/storage/" // Replace with your actual API base URL
-        val imageUrl = baseUrl + product.image // Concatenate base URL with image path
+        val baseUrl =  "http://192.168.137.94:8000/storage/" // Gantilah dengan URL API yang sesungguhnya
+        val imageUrl = baseUrl + product.image
         Log.d("ImageAdapter", "Image URL: $imageUrl")
 
         holder.bind(product, imageUrl)
 
         // Handle click on the item
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(product) // Pass the clicked product
+            onItemClick?.invoke(product) // Pass the clicked product to the Activity
         }
     }
 
     override fun getItemCount(): Int = productList.size
 
-    // ViewHolder untuk CardView item
-    class ProductViewHolder(private val binding: ItemKostumBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ProductViewHolder(private val binding: ItemKostumBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: kosta, imageUrl: String) {
             binding.namaKostum.text = product.nama_kostum
@@ -47,9 +45,8 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
             // Menggunakan Glide untuk memuat gambar dari URL lengkap
             Glide.with(binding.root.context)
-                .load(imageUrl) // Use the complete image URL
+                .load(imageUrl)
                 .into(binding.image)
         }
     }
-
 }
