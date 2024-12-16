@@ -17,7 +17,7 @@ class TariAdapter(private val tariList: List<Tari>) : RecyclerView.Adapter<TariA
 
     override fun onBindViewHolder(holder: TariViewHolder, position: Int) {
         val tari = tariList[position]
-        val baseUrl =  "http://192.168.137.94:8000/storage/" // Replace with your actual API base URL
+        val baseUrl =  "http://192.168.43.37:8000/storage/" // Replace with your actual API base URL
         val imageUrl = baseUrl + tari.image // Concatenate base URL with image path
         Log.d("TariAdapter", "Image URL: $imageUrl")
 

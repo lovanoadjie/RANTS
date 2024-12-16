@@ -20,7 +20,7 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        val baseUrl =  "http://192.168.137.94:8000/storage/" // Gantilah dengan URL API yang sesungguhnya
+        val baseUrl =  "http://192.168.43.37:8000/storage/" // Gantilah dengan URL API yang sesungguhnya
         val imageUrl = baseUrl + product.image
         Log.d("ImageAdapter", "Image URL: $imageUrl")
 

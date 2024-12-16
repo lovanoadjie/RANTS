@@ -1,11 +1,15 @@
 package com.example.rants
 
+import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.text.Html
+import android.text.InputType
 import android.util.Log
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -55,15 +59,15 @@ class BerandaActivity : AppCompatActivity() {
         adapter = ImageAdapter(listGambar)
         viewPager.adapter = adapter
 
-        binding.JadwalButton.setOnClickListener(){
+        binding.JadwalButton.setOnClickListener() {
             goToJadwalActivity()
         }
 
-        binding.mesegeBtn.setOnClickListener(){
+        binding.mesegeBtn.setOnClickListener() {
             goToChatadminActivity()
         }
 
-        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 selectDot(position)
                 super.onPageSelected(position)
@@ -72,7 +76,10 @@ class BerandaActivity : AppCompatActivity() {
                 val currentGallery = listGambar[position]
                 binding.textViewDescription.text = currentGallery.description
 
-                Log.d("BerandaActivity", "TextView Description: ${binding.textViewDescription.text}")
+                Log.d(
+                    "BerandaActivity",
+                    "TextView Description: ${binding.textViewDescription.text}"
+                )
 
 
                 slideHandler.removeCallbacks(sliderRun)
@@ -103,9 +110,19 @@ class BerandaActivity : AppCompatActivity() {
     private fun selectDot(position: Int) {
         for (i in 0 until listGambar.size) {
             if (i == position) {
-                dots[i].setTextColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_primary))
+                dots[i].setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        com.google.android.material.R.color.design_default_color_primary
+                    )
+                )
             } else {
-                dots[i].setTextColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
+                dots[i].setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        com.google.android.material.R.color.design_default_color_secondary
+                    )
+                )
             }
         }
         setupBottomNavigation()
@@ -120,16 +137,19 @@ class BerandaActivity : AppCompatActivity() {
                     finish()
                     true
                 }
+
                 R.id.bottom_riwayat -> {
                     startActivity(Intent(this, RiwayatActyvity::class.java))
                     finish()
                     true
                 }
+
                 R.id.bottom_profil -> {
                     startActivity(Intent(this, ProfilActivity::class.java))
                     finish()
                     true
                 }
+
                 else -> false
             }
         }
@@ -141,7 +161,10 @@ class BerandaActivity : AppCompatActivity() {
 
         val apiService = ApiConfig.getGalleries().create(ApiService::class.java)
         apiService.getGalleries().enqueue(object : Callback<GalleryResponse> {
-            override fun onResponse(call: Call<GalleryResponse>, response: Response<GalleryResponse>) {
+            override fun onResponse(
+                call: Call<GalleryResponse>,
+                response: Response<GalleryResponse>
+            ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     Log.d("ApiConfig", "API Response: ${responseBody?.data}")
@@ -159,19 +182,28 @@ class BerandaActivity : AppCompatActivity() {
                         setIndicator()
                     } else {
                         // If no data is found, show a message
-                        Toast.makeText(this@BerandaActivity, "Tidak ada gambar ditemukan", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@BerandaActivity,
+                            "Tidak ada gambar ditemukan",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
                     // If the response failed, show an error message
                     Log.e("API Error", "HTTP Error: ${response.code()} - ${response.message()}")
-                    Toast.makeText(this@BerandaActivity, "Gagal memuat gambar: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@BerandaActivity,
+                        "Gagal memuat gambar: ${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(call: Call<GalleryResponse>, t: Throwable) {
                 // Handle connection failure
                 Log.e("API Failure", "Error: ${t.message}", t)
-                Toast.makeText(this@BerandaActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BerandaActivity, "Error: ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
@@ -182,9 +214,16 @@ class BerandaActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToChatadminActivity(){
-        val intent = Intent(this, ChatadminActivity::class.java).also {
-            startActivity(it)
+    private fun goToChatadminActivity() {
+        val url = "https://wa.me/6285263945612?text=Halo,%20saya%20ingin%20menghubungi%20Anda" // URL lengkap
+
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+        try {
+            startActivity(intent) // Langsung membuka chat WhatsApp
+        } catch (e: Exception) {
+            Toast.makeText(this, "Gagal membuka WhatsApp. Pastikan WhatsApp terpasang.", Toast.LENGTH_SHORT).show()
         }
     }
+
 }
