@@ -16,6 +16,15 @@
         android:theme="@style/Base.Theme.RANTS"
         tools:targetApi="31">
         <activity
+            android:name=".ValidasipesananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailMakeupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailTariActivity"
+            android:exported="false" />
+        <activity
             android:name=".PesananActivity"
             android:exported="false" />
         <activity

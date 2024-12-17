@@ -1,5 +1,5 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/produk"
+    android:id="@+id/makeup"
     android:layout_width="170dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,7 +25,7 @@
 
         <!-- Nama Produk -->
         <TextView
-            android:id="@+id/kategori"
+            android:id="@+id/kategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kategori"

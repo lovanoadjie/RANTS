@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class kosta(
     @SerializedName("id") val id: Int,
-    @SerializedName("nama_kostum") val nama_kostum: String, // Sesuai JSON
+    @SerializedName("nama_kostum") val nama_kostum: String,
     @SerializedName("jumlah") val jumlah: Int,
     @SerializedName("image") val image: String,
     @SerializedName("warna") val warna: String,

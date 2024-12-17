@@ -49,7 +49,6 @@ class KostumActivity : AppCompatActivity() {
                         // Simpan ke adapter dan set onItemClick
                         productAdapter = ProductAdapter(products).apply {
                             onItemClick = { product ->
-                                // Pastikan product ID dikirim ke DetailActivity
                                 val intent = Intent(this@KostumActivity, DetailActivity::class.java)
                                 intent.putExtra("product_id", product.id)  // Mengirimkan ID produk
                                 startActivity(intent)
@@ -65,14 +64,6 @@ class KostumActivity : AppCompatActivity() {
             }
         })
     }
-
-
-//    private fun onProductClick(product: kosta) {
-//        // Handle click item and navigate to DetailActivity
-//        val intent = Intent(this, DetailActivity::class.java)
-//            intent.putExtra("product_id", product.id)  // Kirim id produk ke DetailActivity
-//
-//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {

@@ -1,16 +1,20 @@
 package com.example.rants.model
 
-enum class kategory{
+import com.google.gson.annotations.SerializedName
+enum class Kategory{
     SD,SMP,SMA,Umum
 }
 
 class Makeup (
-    val id: Int,
-    val image: String,
-    val Kategory: kategory,
-    val harga: Double
+    @SerializedName ("id") val id: Int,
+    @SerializedName ("image") val image: String,
+    @SerializedName ("Kategory") val Kategory: Kategory,
+    @SerializedName ("harga") val harga: Double
 )
 
 data class MakeupResponse(
     val data: List<Makeup> // List of Gallery objects
+)
+data class MakeupDetailResponse(
+    val data: Makeup // List of Gallery objects
 )

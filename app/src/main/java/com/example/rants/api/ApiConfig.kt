@@ -6,11 +6,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
-    private const val BASE_URL = "http://192.168.43.37:8000/api/"
+    private const val BASE_URL = "http://192.168.62.91:8000/api/"
 
     fun  getImageUrl(): String{
 
-        return "http://192.168.43.37:8000/storage/"
+        return "http://192.168.62.91:8000/storage/"
     }
     fun getRetrofitInstance(): Retrofit {
         val loggingInterceptor = HttpLoggingInterceptor()
@@ -42,6 +42,13 @@ object ApiConfig {
     }
 
     fun getTari(): Retrofit {
+        return Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    }
+
+    fun getTariDetail(): Retrofit {
         return Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())

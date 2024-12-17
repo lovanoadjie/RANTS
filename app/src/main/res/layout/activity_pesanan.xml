@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@android:color/white">
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_marginVertical="40dp">
 
         <!-- Gambar Header -->
         <ImageView
@@ -29,26 +30,26 @@
             android:padding="12dp"
             android:layout_marginTop="12dp">
 
+            <!-- Tanggal Picker -->
             <EditText
                 android:id="@+id/et_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="dd/mm/yy"
-                android:inputType="date" />
+                android:hint="Pilih Tanggal"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none" />
 
-            <EditText
-                android:id="@+id/et_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Waktu"
-                android:inputType="time" />
-
-            <EditText
+            <!-- Lokasi Picker -->
+            <AutoCompleteTextView
                 android:id="@+id/et_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Lokasi" />
+                android:hint="Pilih Lokasi"
+                android:focusable="false"
+                android:clickable="true" />
 
+            <!-- Jumlah -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,16 +85,6 @@
                     android:text="➕" />
             </LinearLayout>
 
-            <!-- OK Button -->
-            <Button
-                android:id="@+id/btn_ok"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="OK"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/marron"
-                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Harga dan Bayar -->
@@ -123,4 +114,4 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

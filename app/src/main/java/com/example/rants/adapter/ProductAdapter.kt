@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rants.api.ApiConfig
 import com.example.rants.model.kosta
 import com.example.rants.databinding.ItemKostumBinding
+import kotlin.math.log
 
 // Adapter untuk RecyclerView
 class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
@@ -20,8 +22,7 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        val baseUrl =  "http://192.168.43.37:8000/storage/" // Gantilah dengan URL API yang sesungguhnya
-        val imageUrl = baseUrl + product.image
+        val imageUrl = ApiConfig.getImageUrl() + product.image
         Log.d("ImageAdapter", "Image URL: $imageUrl")
 
         holder.bind(product, imageUrl)

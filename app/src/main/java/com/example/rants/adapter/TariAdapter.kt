@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rants.api.ApiConfig
 import com.example.rants.databinding.ItemTariBinding
 import com.example.rants.model.Tari
 
+
 class TariAdapter(private val tariList: List<Tari>) : RecyclerView.Adapter<TariAdapter.TariViewHolder>() {
+
+    var onItemClick: ((Tari) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TariViewHolder {
         val binding = ItemTariBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,11 +21,15 @@ class TariAdapter(private val tariList: List<Tari>) : RecyclerView.Adapter<TariA
 
     override fun onBindViewHolder(holder: TariViewHolder, position: Int) {
         val tari = tariList[position]
-        val baseUrl =  "http://192.168.43.37:8000/storage/" // Replace with your actual API base URL
-        val imageUrl = baseUrl + tari.image // Concatenate base URL with image path
+        val imageUrl = ApiConfig.getImageUrl() + tari.image // Concatenate base URL with image path
         Log.d("TariAdapter", "Image URL: $imageUrl")
 
         holder.bind(tari, imageUrl) // Pass the full image URL to bind()
+
+        // Handle click on the item
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(tari) // Pass the clicked product to the Activity
+        }
     }
 
     override fun getItemCount(): Int = tariList.size

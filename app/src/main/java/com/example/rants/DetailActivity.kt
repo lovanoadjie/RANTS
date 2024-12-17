@@ -24,6 +24,10 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.orderButton.setOnClickListener(){
+            goToPesanan()
+        }
+
         // Mendapatkan productId dari Intent
         val productId = intent?.getIntExtra("product_id", -1) ?: -1
         Log.d("DetailActivity", "Received Product ID: $productId")
@@ -43,6 +47,8 @@ class DetailActivity : AppCompatActivity() {
         getDetailFromApi(productId)
     }
 
+
+
     private fun getDetailFromApi(productId: Int) {
         val apiService = ApiConfig.getProducts().create(ApiService::class.java)
         apiService.getProductById(productId).enqueue(object : Callback<ProductDetailResponse> {
@@ -57,10 +63,13 @@ class DetailActivity : AppCompatActivity() {
                         binding.warna.text = product.warna
                         binding.ukuran.text = product.ukuran
                         binding.harga.text = product.harga.toString()
+                        val baseUrl =  ApiConfig.getImageUrl()
+                        val imageUrl = baseUrl + product.image
 
+                        Log.d("Hello", "coba image: $imageUrl")
                         // Menampilkan gambar produk dengan Glide
                         Glide.with(this@DetailActivity)
-                            .load(product.image)
+                            .load(imageUrl)
                             .into(binding.image)
                     }
                 } else {
@@ -76,6 +85,8 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
@@ -85,4 +96,11 @@ class DetailActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun goToPesanan() {
+        val intent = Intent(this, PesananActivity::class.java).also {
+            startActivity(it)
+        }
+    }
 }
+
