@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rants.api.ApiConfig
 import com.example.rants.model.kosta
 import com.example.rants.databinding.ItemKostumBinding
+import kotlin.math.log
 
 // Adapter untuk RecyclerView
 class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
+    var onItemClick: ((kosta) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemKostumBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,18 +22,20 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        val baseUrl =  "http://192.168.43.253:8000/storage/" // Replace with your actual API base URL
-        val imageUrl = baseUrl + product.image // Concatenate base URL with image path
+        val imageUrl = ApiConfig.getImageUrl() + product.image
         Log.d("ImageAdapter", "Image URL: $imageUrl")
 
-        holder.bind(product, imageUrl) // Pass the full image URL to bind()
+        holder.bind(product, imageUrl)
+
+        // Handle click on the item
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(product) // Pass the clicked product to the Activity
+        }
     }
 
     override fun getItemCount(): Int = productList.size
 
-    // ViewHolder untuk CardView item
-    class ProductViewHolder(private val binding: ItemKostumBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ProductViewHolder(private val binding: ItemKostumBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: kosta, imageUrl: String) {
             binding.namaKostum.text = product.nama_kostum
@@ -40,7 +46,7 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
             // Menggunakan Glide untuk memuat gambar dari URL lengkap
             Glide.with(binding.root.context)
-                .load(imageUrl) // Use the complete image URL
+                .load(imageUrl)
                 .into(binding.image)
         }
     }

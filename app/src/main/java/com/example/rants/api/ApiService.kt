@@ -2,16 +2,18 @@ package com.example.rants.api
 
 import com.example.rants.model.AuthResponse
 import com.example.rants.model.Calendar
-//import com.example.rants.model.DetailResponse
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
 import com.example.rants.model.Makeup
+import com.example.rants.model.MakeupDetailResponse
 import com.example.rants.model.MakeupResponse
 import com.example.rants.model.PaymentRequest
 import com.example.rants.model.PaymentResponse
+import com.example.rants.model.ProductDetailResponse
 import com.example.rants.model.ProductResponse
 import com.example.rants.model.RegisterRequest
+import com.example.rants.model.TariDetailResponse
 import com.example.rants.model.TariResponse
 import com.example.rants.model.kosta
 import retrofit2.Call
@@ -59,3 +61,4 @@ interface ApiService {
     @POST("login")
     fun uodate_profile(@Body request: LoginRequest): Call<AuthResponse>
 }
+

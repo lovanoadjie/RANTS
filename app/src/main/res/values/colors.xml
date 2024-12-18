@@ -11,5 +11,9 @@
     <color name="grey">#5F5E5E</color>
     <color name="colorActive">#4B0F0F</color>
     <color name="colorInactive">#5F5E5E</color>
+    <color name="teal_700">#00897B</color>
+    <color name="purple_500">#9C27B0</color>
+
+
 
 </resources>

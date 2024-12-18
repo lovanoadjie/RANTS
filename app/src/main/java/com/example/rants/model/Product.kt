@@ -1,14 +1,22 @@
 package com.example.rants.model
 
+import com.google.gson.annotations.SerializedName
+
 data class kosta(
-    val id: Int,
-    val nama_kostum: String,
-    val image: String,
-    val jumlah: Int,
-    val warna: String,
-    val ukuran: String,
-    val harga: Int,
+    @SerializedName("id") val id: Int,
+    @SerializedName("nama_kostum") val nama_kostum: String,
+    @SerializedName("jumlah") val jumlah: Int,
+    @SerializedName("image") val image: String,
+    @SerializedName("warna") val warna: String,
+    @SerializedName("ukuran") val ukuran: String,
+    @SerializedName("harga") val harga: Int
 )
+
 data class ProductResponse(
-    val data: List<kosta> // or whatever field name is used for the list
+    val status: String,
+    val data: List<kosta>
+)
+
+data class ProductDetailResponse(
+    val data: kosta
 )

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rants.adapter.MakeupAdapter
 import com.example.rants.databinding.ActivityKostumBinding
 import com.example.rants.adapter.ProductAdapter
+import com.example.rants.adapter.TariAdapter
 import com.example.rants.api.ApiConfig
 import com.example.rants.api.ApiService
 import com.example.rants.databinding.ActivityMakeupBinding
@@ -25,7 +26,7 @@ import retrofit2.Response
 
 class MakeupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMakeupBinding
-    private lateinit var MakeupAdapter: MakeupAdapter
+    private lateinit var makeupAdapter:MakeupAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,22 +51,35 @@ class MakeupActivity : AppCompatActivity() {
         apiService.getMakeup().enqueue(object : Callback<MakeupResponse> {
             override fun onResponse(call: Call<MakeupResponse>, response: Response<MakeupResponse>) {
                 if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null && responseBody.data.isNotEmpty()) {
-                        // Now use responseBody.data to populate the RecyclerView
-                        MakeupAdapter = MakeupAdapter(responseBody.data)
-                        binding.recyclerView.layoutManager = LinearLayoutManager(this@MakeupActivity)
-                        binding.recyclerView.adapter = MakeupAdapter
-                    } else {
-                        Log.d("API Response", "No products found")
-                        Toast.makeText(this@MakeupActivity, "Tidak ada produk ditemukan", Toast.LENGTH_SHORT).show()
+                    val makeup = response.body()?.data
+//                    if (responseBody != null && responseBody.data.isNotEmpty()) {
+//                        // Now use responseBody.data to populate the RecyclerView
+//                        MakeupAdapter = MakeupAdapter(responseBody.data)
+//                        binding.recyclerView.layoutManager = LinearLayoutManager(this@MakeupActivity)
+//                        binding.recyclerView.adapter = MakeupAdapter
+//                    } else {
+//                        Log.d("API Response", "No products found")
+//                        Toast.makeText(this@MakeupActivity, "Tidak ada produk ditemukan", Toast.LENGTH_SHORT).show()
+//                    }
+//                } else {
+//                    Log.e("API Error", "Error: ${response.message()}")
+//                    Toast.makeText(this@MakeupActivity, "Gagal memuat produk: ${response.message()}", Toast.LENGTH_SHORT).show()
+//                }
+
+                    if (makeup != null) {
+                        // Simpan ke adapter dan set onItemClick
+                        makeupAdapter = MakeupAdapter(makeup).apply {
+                            onItemClick = { Makeup ->
+                                val intent =
+                                    Intent(this@MakeupActivity, DetailMakeupActivity::class.java)
+                                intent.putExtra("makeup_id", Makeup.id)  // Mengirimkan ID produk
+                                startActivity(intent)
+                            }
+                        }
+                        binding.recyclerView.adapter = makeupAdapter
                     }
-                } else {
-                    Log.e("API Error", "Error: ${response.message()}")
-                    Toast.makeText(this@MakeupActivity, "Gagal memuat produk: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
-
 
 
             override fun onFailure(call: Call<MakeupResponse>, t: Throwable) {

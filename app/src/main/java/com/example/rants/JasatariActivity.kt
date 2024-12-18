@@ -1,7 +1,10 @@
 package com.example.rants
 
+import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +19,7 @@ import com.example.rants.api.ApiService
 import com.example.rants.databinding.ActivityJasatariBinding
 import com.example.rants.databinding.ActivityKostumBinding
 import com.example.rants.model.ProductResponse
+import com.example.rants.model.Tari
 import com.example.rants.model.TariResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +36,7 @@ class JasatariActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup Toolbar
-        setSupportActionBar(binding.toolbar1)
+        setSupportActionBar(binding.toolbar3)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Setup RecyclerView
@@ -43,33 +47,46 @@ class JasatariActivity : AppCompatActivity() {
 
     private fun getTariFromApi() {
         Log.d("API Response", "Fetching products...")
-
         val apiService = ApiConfig.getTari().create(ApiService::class.java)
         apiService.getTari().enqueue(object : Callback<TariResponse> {
             override fun onResponse(call: Call<TariResponse>, response: Response<TariResponse>) {
                 if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null && responseBody.data.isNotEmpty()) {
-                        // Now use responseBody.data to populate the RecyclerView
-                        tariAdapter = TariAdapter(responseBody.data)
-                        binding.recyclerView.layoutManager =
-                            LinearLayoutManager(this@JasatariActivity)
+                    val tari = response.body()?.data
+//                    if (responseBody != null && responseBody.data.isNotEmpty()) {
+//                        // Now use responseBody.data to populate the RecyclerView
+//                        tariAdapter = TariAdapter(responseBody.data)
+//                        binding.recyclerView.layoutManager =
+//                            LinearLayoutManager(this@JasatariActivity)
+//                        binding.recyclerView.adapter = tariAdapter
+//                    } else {
+//                        Log.d("API Response", "No item found")
+//                        Toast.makeText(
+//                            this@JasatariActivity,
+//                            "Tidak ada produk ditemukan",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
+//                } else {
+//                    Log.e("API Error", "Error: ${response.code()} - ${response.message()}")
+//                    Toast.makeText(
+//                        this@JasatariActivity,
+//                        "Gagal memuat produk: ${response.message()}",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+
+                    if (tari != null) {
+                        // Simpan ke adapter dan set onItemClick
+                        tariAdapter = TariAdapter(tari).apply {
+                            onItemClick = { Tari ->
+                                val intent =
+                                    Intent(this@JasatariActivity, DetailTariActivity::class.java)
+                                intent.putExtra("tari_id", Tari.id)  // Mengirimkan ID produk
+                                startActivity(intent)
+                            }
+                        }
                         binding.recyclerView.adapter = tariAdapter
-                    } else {
-                        Log.d("API Response", "No item found")
-                        Toast.makeText(
-                            this@JasatariActivity,
-                            "Tidak ada produk ditemukan",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
-                } else {
-                    Log.e("API Error", "Error: ${response.code()} - ${response.message()}")
-                    Toast.makeText(
-                        this@JasatariActivity,
-                        "Gagal memuat produk: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             }
 
@@ -81,5 +98,15 @@ class JasatariActivity : AppCompatActivity() {
                     .show()
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.home -> {
+                onBackPressed()  // Go back to the previous screen
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

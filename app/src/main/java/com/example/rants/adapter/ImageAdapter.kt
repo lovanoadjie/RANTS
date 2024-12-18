@@ -25,7 +25,7 @@ class ImageAdapter(private val listGambar: ArrayList<Gallery>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val gallery = listGambar[position]
-        val baseUrl =  "http://192.168.43.253:8000/storage/" // Replace with your actual API base URL
+//        val baseUrl =  "http://192.168.137.128:8000/storage/" // Replace with your actual API base URL
         val imageUrl = ApiConfig.getImageUrl() + gallery.image
         // Assuming you're using Glide to load images
         Log.d("ImageAdapter", "Image URL: $imageUrl") // Log the image URL
