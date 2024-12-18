@@ -59,8 +59,8 @@ dependencies {
     implementation("me.relex:circleindicator:2.1.6")
     implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.midtrans:uikit:2.0.1")
+//    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+//    implementation ("com.midtrans:uikit:2.0.1")
 
 
 }
