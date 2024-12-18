@@ -5,5 +5,3 @@ data class AuthResponse(
     val user: user, // Tambahkan model User jika Anda perlu data user
     val token: String
 )
-
-

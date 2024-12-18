@@ -61,6 +61,14 @@ object ApiConfig {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+    fun getPayment(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+
 
 
 

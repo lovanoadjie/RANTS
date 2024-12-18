@@ -2,10 +2,14 @@ package com.example.rants.api
 
 import com.example.rants.model.AuthResponse
 import com.example.rants.model.Calendar
+//import com.example.rants.model.DetailResponse
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
+import com.example.rants.model.Makeup
 import com.example.rants.model.MakeupResponse
+import com.example.rants.model.PaymentRequest
+import com.example.rants.model.PaymentResponse
 import com.example.rants.model.ProductResponse
 import com.example.rants.model.RegisterRequest
 import com.example.rants.model.TariResponse
@@ -26,11 +30,21 @@ interface ApiService {
     @GET("tari/all")
     fun getTari(): Call<TariResponse>
 
+    @GET("tari/{id}")
+    fun getTariById(@Path("id")tariId: Int): Call<TariDetailResponse>
+
     @GET("makeup/all")
     fun getMakeup(): Call<MakeupResponse>
 
+    @GET("makeup/{id}")
+    fun getMakeupById(@Path("id") makeupId: Int): Call<MakeupDetailResponse>
+
+
     @GET("kostum/all")
     fun getProducts(): Call<ProductResponse>
+
+    @GET("kostum/{id}")
+    fun getProductById(@Path("id") productId: Int): Call<ProductDetailResponse>
 
     @GET("galleries")
     fun getGalleries(): Call<GalleryResponse>
@@ -38,4 +52,10 @@ interface ApiService {
     @POST("register")
     fun register(@Body registerRequest: RegisterRequest): Call<AuthResponse>
 
+    @POST("payment")
+    fun createPayment(@Body request: PaymentRequest): Call<PaymentResponse>
+
+
+    @POST("login")
+    fun uodate_profile(@Body request: LoginRequest): Call<AuthResponse>
 }
