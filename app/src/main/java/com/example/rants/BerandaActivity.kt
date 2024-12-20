@@ -63,7 +63,7 @@ class BerandaActivity : AppCompatActivity() {
             goToJadwalActivity()
         }
 
-        binding.mesegeBtn.setOnClickListener() {
+        binding.chatBtn.setOnClickListener() {
             goToChatadminActivity()
         }
 
@@ -113,14 +113,14 @@ class BerandaActivity : AppCompatActivity() {
                 dots[i].setTextColor(
                     ContextCompat.getColor(
                         this,
-                        com.google.android.material.R.color.design_default_color_primary
+                        R.color.red
                     )
                 )
             } else {
                 dots[i].setTextColor(
                     ContextCompat.getColor(
                         this,
-                        com.google.android.material.R.color.design_default_color_secondary
+                        R.color.lightgrey
                     )
                 )
             }

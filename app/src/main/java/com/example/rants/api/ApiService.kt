@@ -24,6 +24,9 @@ interface ApiService {
     @POST("login")
     fun login(@Body request: LoginRequest): Call<AuthResponse>
 
+    @POST("register")
+    fun register(@Body registerRequest: RegisterRequest): Call<AuthResponse>
+
     @GET("acara/{tanggal}")
     fun getCalendars(@Path("tanggal") tanggal: String): Call<List<Calendar>>
 
@@ -49,8 +52,7 @@ interface ApiService {
     @GET("galleries")
     fun getGalleries(): Call<GalleryResponse>
 
-    @POST("register")
-    fun register(@Body registerRequest: RegisterRequest): Call<AuthResponse>
+
 
 }
 
