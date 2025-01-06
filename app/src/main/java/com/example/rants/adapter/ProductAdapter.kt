@@ -8,7 +8,9 @@ import com.bumptech.glide.Glide
 import com.example.rants.api.ApiConfig
 import com.example.rants.model.kosta
 import com.example.rants.databinding.ItemKostumBinding
-import kotlin.math.log
+import com.example.rants.formatRupiah
+import java.text.NumberFormat
+import java.util.Locale
 
 // Adapter untuk RecyclerView
 class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
@@ -39,15 +41,19 @@ class ProductAdapter(private val productList: List<kosta>) : RecyclerView.Adapte
 
         fun bind(product: kosta, imageUrl: String) {
             binding.namaKostum.text = product.nama_kostum
-            binding.jumlah.text = product.jumlah.toString()
-            binding.warna.text = product.warna
-            binding.ukuran.text = product.ukuran
-            binding.harga.text = product.harga.toString()
+//            binding.jumlah.text = product.jumlah.toString()
+//            binding.warna.text = product.warna
+            binding.harga.text =  "Rp ${formatCurrency(product.harga ?: 0)}"
 
             // Menggunakan Glide untuk memuat gambar dari URL lengkap
             Glide.with(binding.root.context)
                 .load(imageUrl)
                 .into(binding.image)
+        }
+
+        private fun formatCurrency(value: Int): String {
+            val numberFormat = NumberFormat.getInstance(Locale("id", "ID"))
+            return numberFormat.format(value)
         }
     }
 }

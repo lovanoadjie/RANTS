@@ -36,27 +36,20 @@
 
         <!-- Harga Produk -->
 
-        <TextView
-            android:id="@+id/jumlah"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rp. 100.000"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
-        <TextView
-            android:id="@+id/warna"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rp. 100.000"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
-        <TextView
-            android:id="@+id/ukuran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rp. 100.000"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/jumlah"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rp. 100.000"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginTop="4dp"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/warna"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Rp. 100.000"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginTop="4dp"/>-->
         <TextView
             android:id="@+id/harga"
             android:layout_width="match_parent"

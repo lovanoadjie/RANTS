@@ -1,9 +1,12 @@
-package com.example.rants.model
-
-data class AuthResponse(
-    val message: String,
-    val user: user, // Tambahkan model User jika Anda perlu data user
-    val token: String
-)
-
-
+//import com.example.rants.model.user
+//
+//data class AuthResponse(
+//    val status: String,
+//    val message: String,
+//    val data: AuthData  // Pastikan `data` ada dan berisi token
+//)
+//
+//data class AuthData(
+//    val user: user,  // Jika Anda perlu data pengguna
+//    val token: String  // Token berada di dalam data
+//)

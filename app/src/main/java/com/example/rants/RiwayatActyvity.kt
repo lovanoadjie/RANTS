@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rants.adapter.RiwayatAdapter
 import com.example.rants.databinding.RiwayatActyvityBinding
 import com.example.rants.model.ItemRiwayat
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class RiwayatActyvity : AppCompatActivity() {
     private lateinit var binding: RiwayatActyvityBinding

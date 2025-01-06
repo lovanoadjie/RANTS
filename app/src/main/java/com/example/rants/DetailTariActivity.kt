@@ -15,6 +15,8 @@ import com.example.rants.model.TariDetailResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.Locale
 
 class DetailTariActivity : AppCompatActivity() {
 
@@ -60,7 +62,7 @@ class DetailTariActivity : AppCompatActivity() {
                         binding.namaTari.text = tari.jenis_tarian
                         binding.jumlahPenari.text = tari.jumlah_penari.toString()
                         binding.deskripsi.text = tari.deskripsi_acara
-                        binding.harga.text = tari.harga.toString()
+                        binding.harga.text = "Rp ${formatCurrency(tari.harga ?: 0)}"
                         val baseUrl =  ApiConfig.getImageUrl()
                         val imageUrl = baseUrl + tari.image
 
@@ -94,7 +96,15 @@ class DetailTariActivity : AppCompatActivity() {
     }
 
     private fun goToPesan() {
-        val intent = Intent(this, PesananActivity::class.java).also {
-            startActivity(it)    }
+        val tariId = intent?.getIntExtra("tari_id", -1) ?: -1
+        val intent = Intent(this, PesananTariActivity::class.java).apply {
+            putExtra("tari_id", tariId)  // Kirim kembali tari_id
+        }
+        startActivity(intent)
+        }
+
+    private fun formatCurrency(value: Int): String {
+        val numberFormat = NumberFormat.getInstance(Locale("id", "ID"))
+        return numberFormat.format(value)
     }
 }

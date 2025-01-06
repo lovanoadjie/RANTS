@@ -14,6 +14,8 @@ import com.example.rants.model.ProductDetailResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.Locale
 
 class DetailActivity : AppCompatActivity() {
 
@@ -24,9 +26,6 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.orderButton.setOnClickListener(){
-            goToPesanan()
-        }
 
         // Mendapatkan productId dari Intent
         val productId = intent?.getIntExtra("product_id", -1) ?: -1
@@ -34,25 +33,30 @@ class DetailActivity : AppCompatActivity() {
 
         if (productId == -1) {
             Log.e("DetailActivity", "Product ID tidak diterima dengan benar!")
-            finish() // Menghentikan activity jika productId tidak valid
-        } else {
-            Log.d("DetailActivity", "Received Product ID: $productId")
+            Toast.makeText(this, "Product ID tidak valid", Toast.LENGTH_SHORT).show()
+            finish()
+            return
         }
 
         // Setup Toolbar
         setSupportActionBar(binding.toolbar1)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        // Menangani tombol order
+        binding.orderButton.setOnClickListener {
+        }
+
         // Mengambil detail produk berdasarkan productId
         getDetailFromApi(productId)
     }
 
-
-
     private fun getDetailFromApi(productId: Int) {
         val apiService = ApiConfig.getProducts().create(ApiService::class.java)
         apiService.getProductById(productId).enqueue(object : Callback<ProductDetailResponse> {
-            override fun onResponse(call: Call<ProductDetailResponse>, response: Response<ProductDetailResponse>) {
+            override fun onResponse(
+                call: Call<ProductDetailResponse>,
+                response: Response<ProductDetailResponse>
+            ) {
                 if (response.isSuccessful) {
                     val product = response.body()?.data
                     if (product != null) {
@@ -61,16 +65,18 @@ class DetailActivity : AppCompatActivity() {
                         binding.namaKostum.text = product.nama_kostum
                         binding.jumlah.text = product.jumlah.toString()
                         binding.warna.text = product.warna
-                        binding.ukuran.text = product.ukuran
-                        binding.harga.text = product.harga.toString()
-                        val baseUrl =  ApiConfig.getImageUrl()
+                        binding.harga.text = "Rp ${formatCurrency(product.harga ?: 0)}"
+
+                        val baseUrl = ApiConfig.getImageUrl()
                         val imageUrl = baseUrl + product.image
 
-                        Log.d("Hello", "coba image: $imageUrl")
                         // Menampilkan gambar produk dengan Glide
                         Glide.with(this@DetailActivity)
                             .load(imageUrl)
                             .into(binding.image)
+                    } else {
+                        Log.e("DetailActivity", "Product data is null")
+                        Toast.makeText(this@DetailActivity, "Produk tidak ditemukan", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Log.e("DetailActivity", "Response error: ${response.message()}")
@@ -85,12 +91,15 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
-
+    private fun formatCurrency(value: Int): String {
+        val numberFormat = NumberFormat.getInstance(Locale("id", "ID"))
+        return numberFormat.format(value)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()  // Kembali ke activity sebelumnya
+                onBackPressed()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -98,9 +107,15 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun goToPesanan() {
-        val intent = Intent(this, PesananActivity::class.java).also {
-            startActivity(it)
+        val productId = intent?.getIntExtra("product_id", -1) ?: -1
+        if (productId == -1) {
+            Toast.makeText(this, "Product ID tidak valid", Toast.LENGTH_SHORT).show()
+            return
         }
-    }
-}
 
+        val intent = Intent(this, PesananActivity::class.java)
+        intent.putExtra("product_id", productId) // Kirim product_id ke PesananActivity
+        startActivity(intent)
+    }
+
+}

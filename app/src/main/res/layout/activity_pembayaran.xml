@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="16dp">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Header Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center_horizontal">
+
+                <!-- Icon -->
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/iconray"
+                    android:layout_gravity="center"
+                    android:contentDescription="Icon Beranda" />
+
+                <!-- Back Button -->
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kembali"
+                    android:background="@drawable/button_background"
+                    android:layout_marginTop="16dp"
+                    android:textColor="#3F51B5"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <!-- Amount Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Jumlah Pembayaran"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp 50.000,00"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal" />
+
+            <!-- BRI Section -->
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                android:src="@drawable/logo_bri"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="Logo BRI" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nomor Rekening BANK"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif" />
+
+            <!-- Section for Account Number and Copy Button -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <!-- Account Number -->
+                <TextView
+                    android:id="@+id/accountNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="135036000026531486"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Copy Button -->
+                <ImageButton
+                    android:id="@+id/copyButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_content_copy_24"
+                    android:contentDescription="Salin Nomor Rekening"
+                    android:background="#00000000" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Akun Virtual:"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lovano"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

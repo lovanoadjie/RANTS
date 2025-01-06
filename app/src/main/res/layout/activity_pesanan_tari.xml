@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context=".PesananTariActivity">
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white"
-    android:padding="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,20 +39,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/namaKostum"
+                        android:id="@+id/jenistarian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nama Item"
+                        android:text="Nama Tari"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/jumlah"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Stok"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="@color/black" />
+
 
                     <TextView
                         android:id="@+id/harga"
@@ -73,43 +67,30 @@
                 android:layout_marginTop="12dp">
 
                 <!-- Tanggal Picker -->
-                <LinearLayout
+                <EditText
+                    android:id="@+id/et_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <!-- Date Picker -->
-                    <DatePicker
-                        android:id="@+id/et_datestar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:calendarViewShown="false" />
-
-                    <!-- Time Picker -->
-                    <TimePicker
-                        android:id="@+id/et_timestar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:timePickerMode="spinner"/>
-
-                    <!-- Submit Button -->
-                    <Button
-                        android:id="@+id/btn_submit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Submit"
-                        android:layout_marginTop="16dp"/>
-                </LinearLayout>
-
+                    android:hint="Pilih Tanggal"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:inputType="none" />
 
                 <TimePicker
-                    android:id="@+id/et_timefinish"
+                    android:id="@+id/et_time"
                     android:layout_width="match_parent"
-                    android:layout_height="82dp"
-                    android:hint="Jam Selesai"
-                    android:timePickerMode="spinner" />
+                    android:layout_height="wrap_content"
+                    android:hint="Masukkan Jam Pemakaian"
+                    android:inputType="textPostalAddress"
+                    android:timePickerMode="spinner"/>
 
+                <!-- alamat -->
+                <EditText
+                    android:id="@+id/et_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Masukkan Alamat"
+                    android:inputType="textPostalAddress" />
 
                 <!-- Jumlah -->
                 <LinearLayout
@@ -160,7 +141,7 @@
                     android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Harga: Rp"
+                    android:text="Harga: Rp"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
