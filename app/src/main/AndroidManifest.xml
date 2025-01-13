@@ -16,6 +16,15 @@
         android:theme="@style/Base.Theme.RANTS"
         tools:targetApi="31">
         <activity
+            android:name=".LearnmoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".utils.PembayaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".utils.PaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".ValidasipesananActivity"
             android:exported="false" />
         <activity

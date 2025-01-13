@@ -86,6 +86,9 @@ class BerandaActivity : AppCompatActivity() {
                 slideHandler.postDelayed(sliderRun, 3000)
             }
         })
+
+        setupBottomNavigation()
+
     }
 
     private val sliderRun = Runnable {
@@ -125,7 +128,6 @@ class BerandaActivity : AppCompatActivity() {
                 )
             }
         }
-        setupBottomNavigation()
     }
 
     private fun setupBottomNavigation() {
