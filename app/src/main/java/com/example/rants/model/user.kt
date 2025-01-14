@@ -1,12 +1,19 @@
 package com.example.rants.model
 
-import com.google.gson.annotations.SerializedName
+data class user(
+    val id: Int,
+    val name: String,
+    val nohp: String,
+    val email: String,
+    val password: String
+)
+data class AuthResponse(
+    val status: String,
+    val message: String,
+    val data: AuthData  // Menyimpan data token dan user
+)
 
-data class User(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("email") val email: String,
-    @SerializedName("nohp") val nohp: String,
-    @SerializedName("password") val password: String?,
-    @SerializedName("profile_picture") val profilePicture: String? = null
+data class AuthData(
+    val user: user,  // Gunakan User dengan huruf kapital
+    val token: String  // Token berada di dalam data
 )

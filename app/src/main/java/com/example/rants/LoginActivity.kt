@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.rants.api.ApiConfig
 import com.example.rants.api.ApiService
 import com.example.rants.model.LoginRequest
-import com.example.rants.model.AuthResponse
 import com.example.rants.databinding.ActivityLoginBinding
+import com.example.rants.model.AuthResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+
     private fun loginUser(email: String, password: String) {
         val apiService = ApiConfig.getRetrofit().create(ApiService::class.java)
         val loginRequest = LoginRequest(email, password)
@@ -100,12 +101,20 @@ class LoginActivity : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     val authResponse = response.body()
+
+                    // Cek apakah respons API berhasil dan token ada
                     if (authResponse != null) {
-                        saveTokenToSharedPreferences(authResponse.token)
+                        val token = authResponse.data.token  // Dapatkan token dari data
+                        Log.d("LoginActivity", "Token diterima: $token")
+
+                        // Simpan token ke SharedPreferences
+                        saveTokenToSharedPreferences(token)
                         Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+
+                        // Navigasi ke beranda setelah login sukses
                         goToBerandaActivity()
                     } else {
-                        Log.e("LoginActivity", "Token tidak ditemukan di respons")
+                        Log.e("LoginActivity", "Token tidak ditemukan dalam respons")
                         Toast.makeText(this@LoginActivity, "Login gagal: Token tidak ditemukan", Toast.LENGTH_SHORT).show()
                     }
                 } else {
@@ -121,14 +130,23 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
+
     }
 
     private fun saveTokenToSharedPreferences(token: String) {
         val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
-        sharedPreferences.edit().putString("token", token).apply()
+        val existingToken = sharedPreferences.getString("token", null)
 
-        Log.d("LoginActivity", "Token disimpan di SharedPreferences: $token")
+        // Jika token belum ada, simpan token baru
+        if (existingToken == null) {
+            sharedPreferences.edit().putString("token", token).apply()
+            Log.d("LoginActivity", "Token baru disimpan di SharedPreferences: $token")
+        } else {
+            Log.d("LoginActivity", "Token sudah ada: $existingToken")
+        }
     }
+
 
     private fun goToBerandaActivity() {
         Log.d("LoginActivity", "Navigasi ke BerandaActivity")

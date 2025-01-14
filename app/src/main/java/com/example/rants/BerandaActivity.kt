@@ -63,7 +63,7 @@ class BerandaActivity : AppCompatActivity() {
             goToJadwalActivity()
         }
 
-        binding.mesegeBtn.setOnClickListener() {
+        binding.chatBtn.setOnClickListener() {
             goToChatadminActivity()
         }
 
@@ -91,9 +91,22 @@ class BerandaActivity : AppCompatActivity() {
 
     }
 
-    private val sliderRun = Runnable {
-        binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+    val sliderRun = object : Runnable {
+        override fun run() {
+            val currentIndex = viewPager.currentItem
+            val totalItems = viewPager.adapter?.itemCount ?: 0
+
+            if (currentIndex < totalItems - 1) {
+                viewPager.currentItem = currentIndex + 1 // Pindah ke item berikutnya
+            } else {
+                viewPager.currentItem = 0 // Kembali ke item awal
+            }
+
+            // Jalankan ulang handler dengan delay 3 detik
+            slideHandler.postDelayed(this, 3000)
+        }
     }
+
 
     private fun setIndicator() {
         // Pastikan dots sudah diinisialisasi
@@ -116,14 +129,14 @@ class BerandaActivity : AppCompatActivity() {
                 dots[i].setTextColor(
                     ContextCompat.getColor(
                         this,
-                        com.google.android.material.R.color.design_default_color_primary
+                        R.color.red
                     )
                 )
             } else {
                 dots[i].setTextColor(
                     ContextCompat.getColor(
                         this,
-                        com.google.android.material.R.color.design_default_color_secondary
+                        R.color.lightgrey
                     )
                 )
             }

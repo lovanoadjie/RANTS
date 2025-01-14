@@ -1,8 +1,12 @@
-package com.example.rants.model
-
-import com.google.gson.annotations.SerializedName
-
-data class AuthResponse(
-    @SerializedName("token") val token: String,
-    @SerializedName("user") val user: User // Properti user bertipe User
-)
+//import com.example.rants.model.user
+//
+//data class AuthResponse(
+//    val status: String,
+//    val message: String,
+//    val data: AuthData  // Pastikan `data` ada dan berisi token
+//)
+//
+//data class AuthData(
+//    val user: user,  // Jika Anda perlu data pengguna
+//    val token: String  // Token berada di dalam data
+//)

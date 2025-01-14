@@ -15,6 +15,8 @@ import com.example.rants.model.MakeupDetailResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.Locale
 
 class DetailMakeupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailMakeupBinding
@@ -55,10 +57,12 @@ class DetailMakeupActivity : AppCompatActivity() {
                     val makeup = response.body()?.data
                     if (makeup != null) {
                         // Menampilkan data produk
-                        Log.d("DetailMakeupActivity", "makeup details: ${makeup.Kategory}")
-                        val category = makeup.Kategory?.name ?: "Unknown Category"
+                        Log.d("DetailMakeupActivity", "makeup details: ${makeup.kategory}")
+                        val category = makeup?.kategory?.name ?: "Unknown Category"
                         binding.Kategory.text = category
-                        binding.harga.text = makeup.harga.toString()
+                        binding.harga.text = "Rp ${formatCurrency(makeup.harga ?: 0)}"
+                        Log.d("DetailMakeupActivity", "makeup details: ${makeup.harga}")
+
 
                         // URL Gambar
                         val imageUrl = ApiConfig.getImageUrl() + makeup.image
@@ -68,6 +72,9 @@ class DetailMakeupActivity : AppCompatActivity() {
                         Glide.with(this@DetailMakeupActivity)
                             .load(imageUrl)
                             .into(binding.image)
+                    } else {
+                        Log.e("DetailMakeupActivity", "Data makeup tidak ditemukan")
+                        Toast.makeText(this@DetailMakeupActivity, "Makeup tidak ditemukan", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Log.e("DetailMakeupActivity", "Response error: ${response.message()}")
@@ -82,6 +89,7 @@ class DetailMakeupActivity : AppCompatActivity() {
         })
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
@@ -93,8 +101,15 @@ class DetailMakeupActivity : AppCompatActivity() {
     }
 
     private fun goToPesanan() {
-        val intent = Intent(this, PesananActivity::class.java).also {
-            startActivity(it)
+        val makeupId = intent.getIntExtra("makeup_id", -1)  // Ambil makeup_id dari DetailMakeupActivity
+        val intent = Intent(this, PesananMakeupActivity::class.java).apply {
+            putExtra("makeup_id", makeupId)  // Kirim makeup_id ke PesananMakeupActivity
         }
+        startActivity(intent)
+    }
+
+    private fun formatCurrency(value: Int): String {
+        val numberFormat = NumberFormat.getInstance(Locale("id", "ID"))
+        return numberFormat.format(value)
     }
 }

@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rants.api.ApiConfig
 import com.example.rants.databinding.ItemTariBinding
+import com.example.rants.formatRupiah
 import com.example.rants.model.Tari
+import java.text.NumberFormat
+import java.util.Locale
 
 
 class TariAdapter(private val tariList: List<Tari>) : RecyclerView.Adapter<TariAdapter.TariViewHolder>() {
@@ -39,15 +42,19 @@ class TariAdapter(private val tariList: List<Tari>) : RecyclerView.Adapter<TariA
 
         fun bind(tari: Tari, imageUrl: String) {
             binding.namaTari.text = tari.jenis_tarian
-            binding.jumlahPenari.text = tari.jumlah_penari.toString()
-            binding.deskripsi.text = tari.deskripsi_acara
-            binding.harga.text = tari.harga.toString()
+//            binding.jumlahPenari.text = tari.jumlah_penari.toString()
+//            binding.deskripsi.text = tari.deskripsi_acara
+            binding.harga.text =  "Rp ${formatCurrency(tari.harga ?: 0)}"
 
             // Menggunakan Glide untuk memuat gambar dari URL lengkap
             Glide.with(binding.root.context)
                 .load(imageUrl) // Use the complete image URL
                 .into(binding.image)
         }
-    }
 
+        private fun formatCurrency(value: Int): String {
+            val numberFormat = NumberFormat.getInstance(Locale("id", "ID"))
+            return numberFormat.format(value)
+        }
+    }
 }

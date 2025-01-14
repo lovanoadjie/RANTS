@@ -13,6 +13,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.example.rants.api.ApiConfig
 import com.example.rants.databinding.ItemMakeupBinding
 import com.example.rants.model.Makeup
+import java.text.NumberFormat
+import java.util.Locale
 
 class MakeupAdapter(private val makeupList: List<Makeup>) : RecyclerView.Adapter<MakeupAdapter.MakeupViewHolder>() {
 
@@ -44,33 +46,21 @@ class MakeupAdapter(private val makeupList: List<Makeup>) : RecyclerView.Adapter
 
         fun bind(makeup: Makeup, imageUrl: String) {
             // Null check for category
-            val category = makeup.Kategory?.name
+            val category = makeup.kategory?.name ?: "Unknown Category"
                 ?: "Unknown Category" // Default to "Unknown Category" if category is null
             binding.kategory.text = category
 
             // Set the price
-            binding.harga.text = makeup.harga.toString()
+            binding.harga.text = "Rp ${formatCurrency(makeup.harga ?: 0)}"
 
             // Use Glide to load the image from the complete URL
             Glide.with(binding.root)
                 .load(imageUrl)
-//                .addListener(object : RequestListener<Drawable> {
-//                    override fun onLoadFailed(
-//                        e: GlideException?, model: Any?, target: Target<Drawable>?,
-//                        isFirstResource: Boolean
-//                    ): Boolean {
-//                        e?.logRootCauses("Glide Load Error")
-//                        return false
-//                    }
-//
-//                    override fun onResourceReady(
-//                        resource: Drawable?, model: Any?, target: Target<Drawable>?,
-//                        dataSource: DataSource?, isFirstResource: Boolean
-//                    ): Boolean {
-//                        return false // Glide akan menangani setelah gambar siap
-//                    }
-//                })
                 .into(binding.image)
+        }
 
+        private fun formatCurrency(value: Int): String {
+            val numberFormat = NumberFormat.getInstance(Locale("id", "ID"))
+            return numberFormat.format(value)
         }
     }}

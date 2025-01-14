@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class kosta(
     @SerializedName("id") val id: Int,
-    @SerializedName("nama_kostum") val nama_kostum: String,
-    @SerializedName("jumlah") val jumlah: Int,
+    @SerializedName("nama_kostum") val nama_kostum: String?,
+    @SerializedName("jumlah") val jumlah: Int?,
     @SerializedName("image") val image: String,
     @SerializedName("warna") val warna: String,
     @SerializedName("ukuran") val ukuran: String,
@@ -18,5 +18,32 @@ data class ProductResponse(
 )
 
 data class ProductDetailResponse(
+    val status: String,
     val data: kosta
+)
+
+data class PesananKostumRequest (
+    val kosta_id: Int,
+    val Users_id: Int,
+    val waktu_pemakaian_mulai: String,
+    val waktu_pemakaian_selesai: String,
+    val total_harga: Int,
+    val status_pesanan: String
+)
+
+data class PesananKostumResponse(
+    val success: Boolean,
+    val message: String,
+    val data: PesananData?
+)
+
+data class PesananKostumData(
+    val kosta_id: Int,
+    val User_id: Int,
+    val waktu_pemakaian_mulai: String,
+    val waktu_pemakaian_string: String,
+    val total_harga: Int,
+    val status_pesanan: String,
+    val created_at: String,
+    val update_at: String
 )
