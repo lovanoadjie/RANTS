@@ -69,6 +69,9 @@ class LoginActivity : AppCompatActivity() {
 
         // Menampilkan atau menyembunyikan password
         togglePasswordVisibility()
+
+        binding.editText2.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        binding.showPasswordIcon.setImageResource(R.drawable.hide)
     }
 
     private fun isValidEmail(email: String): Boolean {
@@ -91,7 +94,6 @@ class LoginActivity : AppCompatActivity() {
         // Pastikan kursor tetap di akhir teks
         binding.editText2.setSelection(binding.editText2.text.length)
     }
-
 
 
 //    private fun handleShowPassword() {

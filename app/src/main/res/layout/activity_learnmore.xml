@@ -1,0 +1,172 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+
+        <!-- Toolbar -->
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:title="Beranda"
+            android:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/fotojadwal"
+            app:elevation="4dp"
+            android:theme="@style/ToolbarShadow" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="18dp"
+                android:text="Make Up"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- Garis abu-abu di bawah Toolbar -->
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ScrollView untuk konten utama -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="64dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Logo -->
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/iconray"
+                android:contentDescription="Logo RANTS"
+                android:layout_gravity="center" />
+
+            <!-- Deskripsi Utama -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:padding="16dp"
+                    android:text="RANTS (Ray Entertainments) menyediakan layanan penyewaan jasa tari, makeup, dan kostum (pakaian penari). Aplikasi ini mempermudah pemesanan jasa langsung melalui ponsel Anda."
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Layanan Jasa Tari -->
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/tarii"
+                android:contentDescription="Jasa Tari"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="16dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Layanan Penyewaan Jasa Tari RANTS menyediakan penari profesional beserta kostum dan makeup untuk acara formal maupun nonformal seperti pernikahan, perpisahan, acara pemerintahan, dan event."
+                    android:padding="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:lineSpacingExtra="4dp" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Layanan Penyewaan Kostum -->
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/landingpage"
+                android:contentDescription="Penyewaan Kostum"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="16dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Layanan Penyewaan Kostum RANTS menyediakan kostum seni berkualitas dan nyaman, dengan opsi pengambilan di tempat atau pengiriman ke lokasi pelanggan."
+                    android:padding="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:lineSpacingExtra="4dp" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Layanan Makeup -->
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/makeupss"
+                android:contentDescription="Jasa Makeup"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="16dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Layanan Penyewaan Jasa Makeup RANTS menyediakan riasan wajah untuk acara dan kebutuhan lainnya."
+                    android:padding="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:lineSpacingExtra="4dp" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

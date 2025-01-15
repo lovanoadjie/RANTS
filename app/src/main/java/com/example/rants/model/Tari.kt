@@ -26,11 +26,12 @@ data class PesananTariRequest(
     val tanggal: String,
     val jam_pemakaian: String,
     val alamat: String,
-    val latitude: Double?,
-    val longitude: Double?,
+    val latitude: Double? = null,
+    val longitude: Double? = null,
     val total_harga: Int,
     val status_pesanan: String
 )
+
 
 data class PesananTariResponse(
     val success: Boolean,

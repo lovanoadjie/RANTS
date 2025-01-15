@@ -60,6 +60,4 @@ dependencies {
     implementation("me.relex:circleindicator:2.1.6")
     implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
-    implementation ("com.midtrans:uikit:2.8.2")
-    implementation ("com.midtrans:corekit:2.8.2")
 }

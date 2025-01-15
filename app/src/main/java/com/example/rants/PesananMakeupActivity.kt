@@ -2,6 +2,7 @@ package com.example.rants
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -148,11 +149,11 @@ class PesananMakeupActivity : AppCompatActivity() {
             Users_id = 1, // Replace with actual user ID
             tanggal_pesanan = formattedDate,
             lokasi_pemesanan = binding.etLocation.text.toString(),
-            alamat = "Alamat Lengkap", // You can modify or add actual address handling here
+            alamat = "Alamat", // You can modify or add actual address handling here
             latitude = null, // Update with real coordinates if needed
             longitude = null, // Update with real coordinates if needed
             total_harga = basePrice * quantity,
-            status_pesanan = "Berhasil"
+            status_pesanan = "selesai"
         )
 
         val apiService = ApiConfig.getRetrofitInstance().create(ApiService::class.java)
@@ -167,9 +168,12 @@ class PesananMakeupActivity : AppCompatActivity() {
                         "Pesanan berhasil dibuat",
                         Toast.LENGTH_SHORT
                     ).show()
-                    // Now, call the payment API after the order is created
                     createPaymentTransaction(basePrice * quantity)
                 } else {
+                    // Log informasi respons untuk debugging
+                    Log.e("API_ERROR", "Response code: ${response.code()}")
+                    Log.e("API_ERROR", "Response message: ${response.message()}")
+                    Log.e("API_ERROR", "Response body: ${response.errorBody()?.string()}")
                     Toast.makeText(
                         this@PesananMakeupActivity,
                         "Gagal membuat pesanan",
