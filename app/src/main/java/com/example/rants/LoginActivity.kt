@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.util.Patterns
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rants.api.ApiConfig
@@ -18,11 +20,17 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private var isPasswordVisible = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.editText2.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        binding.showPasswordIcon.setImageResource(R.drawable.view)
+
 
         // Handle klik tombol login
         binding.loginButton.setOnClickListener {
@@ -46,48 +54,70 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //handle login google
-        binding.loginGoogle.setOnClickListener{
-            Toast.makeText(this, "Tombol Login Google", Toast.LENGTH_SHORT).show()
-        }
+//        binding.loginGoogle.setOnClickListener{
+//            Toast.makeText(this, "Tombol Login Google", Toast.LENGTH_SHORT).show()
+//        }
 
         // Handle klik tombol daftar
         binding.daftarTextView.setOnClickListener {
             goToRegisterActivity()
         }
 
+        binding.showPasswordIcon.setOnClickListener {
+            togglePasswordVisibility()
+        }
+
         // Menampilkan atau menyembunyikan password
-        handleShowPassword()
+        togglePasswordVisibility()
     }
 
     private fun isValidEmail(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isNotEmpty()
     }
 
-    private fun handleShowPassword() {
-        val passwordEditText = binding.editText2
-        val showPasswordCheckbox = binding.showPasswordCheckbox
+    private fun togglePasswordVisibility() {
+        isPasswordVisible = !isPasswordVisible
 
-        // Set inputType untuk password di awal (secara default password disembunyikan)
-        passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-
-        // Pastikan kursor berada di akhir teks saat password diatur
-        passwordEditText.setSelection(passwordEditText.text.length)
-
-        // Menambahkan listener untuk checkbox
-        showPasswordCheckbox.setOnCheckedChangeListener { _, isChecked ->
-            passwordEditText.inputType = if (isChecked) {
-                // Jika checkbox dicentang, tampilkan password
-                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            } else {
-                // Jika checkbox tidak dicentang, sembunyikan password
-                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            }
-
-            // Mengatur posisi kursor tetap di akhir teks
-            passwordEditText.setSelection(passwordEditText.text.length)
+        if (isPasswordVisible) {
+            // Jika password terlihat
+            binding.editText2.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.showPasswordIcon.setImageResource(R.drawable.view) // Ikon mata terbuka
+        } else {
+            // Jika password tersembunyi
+            binding.editText2.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.showPasswordIcon.setImageResource(R.drawable.hide) // Ikon mata tertutup
         }
+
+        // Pastikan kursor tetap di akhir teks
+        binding.editText2.setSelection(binding.editText2.text.length)
     }
 
+
+
+//    private fun handleShowPassword() {
+//        val passwordEditText = binding.editText2
+//        val showPasswordCheckbox = binding.showPasswordIcon
+//
+//        // Set inputType untuk password di awal (secara default password disembunyikan)
+//        passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+//
+//        // Pastikan kursor berada di akhir teks saat password diatur
+//        passwordEditText.setSelection(passwordEditText.text.length)
+//
+//        // Menambahkan listener untuk checkbox
+//        showPasswordCheckbox.setOnCheckedChangeListener { _, isChecked ->
+//            passwordEditText.inputType = if (isChecked) {
+//                // Jika checkbox dicentang, tampilkan password
+//                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+//            } else {
+//                // Jika checkbox tidak dicentang, sembunyikan password
+//                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+//            }
+//
+//            // Mengatur posisi kursor tetap di akhir teks
+//            passwordEditText.setSelection(passwordEditText.text.length)
+//        }
+//    }
 
 
     private fun loginUser(email: String, password: String) {
@@ -109,19 +139,31 @@ class LoginActivity : AppCompatActivity() {
 
                         // Simpan token ke SharedPreferences
                         saveTokenToSharedPreferences(token)
-                        Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT)
+                            .show()
 
                         // Navigasi ke beranda setelah login sukses
                         goToBerandaActivity()
                     } else {
                         Log.e("LoginActivity", "Token tidak ditemukan dalam respons")
-                        Toast.makeText(this@LoginActivity, "Login gagal: Token tidak ditemukan", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Login gagal: Token tidak ditemukan",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Log.e("LoginActivity", "Login gagal: ${response.message()} (Code: ${response.code()})")
+                    Log.e(
+                        "LoginActivity",
+                        "Login gagal: ${response.message()} (Code: ${response.code()})"
+                    )
                     Log.e("LoginActivity", "Error Body: $errorBody")
-                    Toast.makeText(this@LoginActivity, "Login gagal: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Login gagal: ${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
