@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context=".PesananActivity">
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -80,36 +80,50 @@
                     android:padding="16dp">
 
                     <!-- Date Picker -->
-                    <DatePicker
-                        android:id="@+id/et_datestar"
+                    <EditText
+                        android:id="@+id/et_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:calendarViewShown="false" />
+                        android:hint="Pilih Tanggal Mulai"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:inputType="none" />
 
-                    <!-- Time Picker -->
-                    <TimePicker
-                        android:id="@+id/et_timestar"
+                    <EditText
+                        android:id="@+id/et_date_finish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:timePickerMode="spinner"/>
+                        android:hint="Pilih Tanggal Selesai"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:inputType="none" />
 
-                    <!-- Submit Button -->
-                    <Button
-                        android:id="@+id/btn_submit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Submit"
-                        android:layout_marginTop="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:text="Total Hari:"
+                            android:padding="16dp"/>
+                        <TextView
+                            android:id="@+id/hari"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:padding="16dp"/>
+
+                    </LinearLayout>
+
+
+
+
+
                 </LinearLayout>
-
-
-                <TimePicker
-                    android:id="@+id/et_timefinish"
-                    android:layout_width="match_parent"
-                    android:layout_height="82dp"
-                    android:hint="Jam Selesai"
-                    android:timePickerMode="spinner" />
-
 
                 <!-- Jumlah -->
                 <LinearLayout

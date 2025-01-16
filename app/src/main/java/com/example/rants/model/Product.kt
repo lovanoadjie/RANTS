@@ -25,10 +25,12 @@ data class ProductDetailResponse(
 data class PesananKostumRequest (
     val kosta_id: Int,
     val Users_id: Int,
-    val waktu_pemakaian_mulai: String,
-    val waktu_pemakaian_selesai: String,
+    val tanggal_pemakaian_mulai: String,
+    val tanggal_pemakaian_selesai: String,
     val total_harga: Int,
-    val status_pesanan: String
+    val status_pesanan: String,
+    val updated_at: String,
+    val created_at: String
 )
 
 data class PesananKostumResponse(

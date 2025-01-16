@@ -67,6 +67,10 @@ class BerandaActivity : AppCompatActivity() {
             goToChatadminActivity()
         }
 
+        binding.learnmore.setOnClickListener(){
+            goToLearnMore()
+        }
+
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 selectDot(position)
@@ -87,6 +91,8 @@ class BerandaActivity : AppCompatActivity() {
             }
         })
     }
+
+
 
     val sliderRun = object : Runnable {
         override fun run() {
@@ -239,4 +245,10 @@ class BerandaActivity : AppCompatActivity() {
         }
     }
 
+    private fun goToLearnMore() {
+        val intent = Intent(this, learnmoreActivity::class.java).also {
+            startActivity(it)
+        }
+
+    }
 }

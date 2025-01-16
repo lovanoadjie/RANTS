@@ -44,6 +44,7 @@ class DetailActivity : AppCompatActivity() {
 
         // Menangani tombol order
         binding.orderButton.setOnClickListener {
+            goToPesanan()
         }
 
         // Mengambil detail produk berdasarkan productId

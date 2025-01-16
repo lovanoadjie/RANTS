@@ -5,7 +5,9 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".BerandaActivity">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +16,7 @@
         <!-- Toolbar -->
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar1"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
@@ -30,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginTop="18dp"
-                android:text="Make Up"
+                android:text="Selengkapnya"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </androidx.appcompat.widget.Toolbar>
