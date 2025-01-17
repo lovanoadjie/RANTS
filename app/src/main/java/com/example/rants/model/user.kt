@@ -17,3 +17,7 @@ data class AuthData(
     val user: user,  // Gunakan User dengan huruf kapital
     val token: String  // Token berada di dalam data
 )
+data class LogoutResponse(
+    val status: String,
+    val message: String
+)

@@ -95,9 +95,7 @@ class PesananTariActivity : AppCompatActivity() {
     private fun getTariDetail(tariId: Int) {
         val apiService = ApiConfig.getTariDetails().create(ApiService::class.java)
         apiService.getTariById(tariId).enqueue(object : Callback<TariDetailResponse> {
-            override fun onResponse(
-                call: Call<TariDetailResponse>,
-                response: Response<TariDetailResponse>
+            override fun onResponse(call: Call<TariDetailResponse>, response: Response<TariDetailResponse>
             ) {
                 if (response.isSuccessful) {
                     Log.d("API_RESPONSE", response.body().toString())

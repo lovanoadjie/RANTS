@@ -6,6 +6,7 @@ import com.example.rants.model.Calendar
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
+import com.example.rants.model.LogoutResponse
 import com.example.rants.model.Makeup
 import com.example.rants.model.MakeupDetailResponse
 import com.example.rants.model.MakeupResponse
@@ -24,12 +25,20 @@ import com.example.rants.model.ProductResponse
 import com.example.rants.model.RegisterRequest
 import com.example.rants.model.TariDetailResponse
 import com.example.rants.model.TariResponse
+import com.example.rants.model.UserProfile
+import com.example.rants.model.UserResponse
 import com.example.rants.model.kosta
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.PartMap
 import retrofit2.http.Path
 
 interface ApiService {
@@ -38,6 +47,9 @@ interface ApiService {
 
     @POST("register")
     fun register(@Body registerRequest: RegisterRequest): Call<AuthResponse>
+
+    @POST("logout")
+    fun logout(@Header("Authorization") token: String): Call<LogoutResponse>
 
     @GET("acara/{tanggal}")
     fun getCalendars(@Path("tanggal") tanggal: String): Call<List<Calendar>>
@@ -72,6 +84,9 @@ interface ApiService {
     @POST("pesanan-kostum")
     fun createKostumOrder(@Body orderRequest: PesananKostumRequest): Call<PesananKostumResponse>
 
+    @GET("profile")
+    fun getUserProfile(@Header("Authorization") token: String): Call<UserResponse>
+
     @POST("payment/createTransaction")
     fun createTransaction(
         @Header("Authorization") authorization: String,
@@ -84,7 +99,13 @@ interface ApiService {
         @Body transaction: PaymentVerificationRequest // Request body yang berisi transaction_id
     ): Call<PaymentVerificationResponse>
 
-
+    @Multipart
+    @PUT("profile/update")
+    fun updateUserProfile(
+        @Header("Authorization") token: String,
+        @PartMap userProfile: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part image: MultipartBody.Part? = null
+    ): Call<UserResponse>
 
 }
 
