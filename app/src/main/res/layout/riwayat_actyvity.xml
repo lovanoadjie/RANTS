@@ -40,8 +40,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_menu"
+        android:background="@color/white"
         app:itemIconTint="@drawable/navbar_icon_tint"
         app:itemTextColor="@drawable/navbar_icon_tint"
-        app:elevation="8dp" />
+        app:elevation="0dp"
+        app:labelVisibilityMode="labeled"
+        app:itemHorizontalTranslationEnabled="false"
+        android:layout_alignParentBottom="true"
+        app:itemIconSize="24dp"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

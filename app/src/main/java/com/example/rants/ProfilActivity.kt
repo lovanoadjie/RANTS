@@ -51,6 +51,18 @@ class ProfilActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+        val token = sharedPreferences.getString("token", null)
+        if (token != null) {
+            fetchUserProfile(token) // Panggil ulang API untuk mengambil profil setiap kali aktivitas kembali aktif
+        } else {
+            Toast.makeText(this, "Token tidak ditemukan!", Toast.LENGTH_SHORT).show()
+            finish() // Jika token tidak ada, keluar dari activity
+        }
+    }
+
     private fun fetchUserProfile(token: String) {
         val apiService = ApiConfig.getRetrofit().create(ApiService::class.java)
         Log.d("ProfilActivity", "Fetching user profile with token: $token")
@@ -86,7 +98,6 @@ class ProfilActivity : AppCompatActivity() {
                     Toast.makeText(this@ProfilActivity, "Gagal mengambil data profil", Toast.LENGTH_SHORT).show()
                 }
             }
-
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 Log.e("ProfilActivity", "Failure: ${t.message}")
@@ -140,8 +151,6 @@ class ProfilActivity : AppCompatActivity() {
             Toast.makeText(this, "Token tidak ditemukan", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->

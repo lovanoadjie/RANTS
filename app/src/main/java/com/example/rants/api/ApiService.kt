@@ -1,7 +1,8 @@
 package com.example.rants.api
 
 import com.example.rants.model.AuthResponse
-import com.example.rants.model.Calendar
+import com.example.rants.model.CalendarAll
+import com.example.rants.model.CalendarModel
 //import com.example.rants.model.DetailResponse
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
@@ -52,7 +53,11 @@ interface ApiService {
     fun logout(@Header("Authorization") token: String): Call<LogoutResponse>
 
     @GET("acara/{tanggal}")
-    fun getCalendars(@Path("tanggal") tanggal: String): Call<List<Calendar>>
+    fun getCalendars(@Path("tanggal") tanggal: String): Call<List<CalendarModel>>
+
+
+    @GET("acara")
+    fun getAllCalendar(): Call<List<CalendarAll>>
 
     @GET("tari/all")
     fun getTari(): Call<TariResponse>
@@ -99,13 +104,10 @@ interface ApiService {
         @Body transaction: PaymentVerificationRequest // Request body yang berisi transaction_id
     ): Call<PaymentVerificationResponse>
 
-    @Multipart
     @PUT("profile/update")
     fun updateUserProfile(
         @Header("Authorization") token: String,
-        @PartMap userProfile: Map<String, @JvmSuppressWildcards RequestBody>,
-        @Part image: MultipartBody.Part? = null
+        @Body userProfile: UserProfile
     ): Call<UserResponse>
-
 }
 

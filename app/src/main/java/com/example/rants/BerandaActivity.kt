@@ -172,6 +172,7 @@ class BerandaActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
     }
 
     // Fungsi untuk mengambil data gambar dari API

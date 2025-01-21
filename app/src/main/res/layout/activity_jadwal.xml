@@ -14,7 +14,6 @@
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
 
         <!-- Toolbar -->
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -24,7 +23,7 @@
             android:titleTextColor="@color/black"
             app:navigationIcon="@drawable/fotojadwal"
             app:elevation="4dp"
-            android:theme="@style/ToolbarShadow" >
+            android:theme="@style/ToolbarShadow">
 
             <TextView
                 android:id="@+id/textView3"
@@ -45,13 +44,13 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Konten Utama -->
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="#FFFFFF"
-        android:dateTextAppearance="@style/CalendarDateText" />
+        app:mcv_showOtherDates="all" />
 
     <!-- Bottom Sheet -->
     <FrameLayout
@@ -62,23 +61,21 @@
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <!-- Konten Bottom Sheet -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- RecyclerView untuk Menampilkan Detail Acara -->
-
+            <!-- Handle Bottom Sheet -->
             <View
                 android:layout_width="50dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="40dp"
-                android:background="@drawable/rounded_view" /> <!-- Gunakan drawable yang baru -->
+                android:background="@drawable/rounded_view" />
 
-
+            <!-- RecyclerView untuk Menampilkan Detail Acara -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/eventRecyclerView"
                 android:layout_marginTop="20dp"
@@ -87,11 +84,7 @@
                 android:layout_weight="1"
                 android:clipToPadding="false"
                 android:paddingBottom="16dp"
-                tools:listitem="@layout/item_calendar_event"/>
-
-
-
+                tools:listitem="@layout/item_calendar_event" />
         </LinearLayout>
-
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

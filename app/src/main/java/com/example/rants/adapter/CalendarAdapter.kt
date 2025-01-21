@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rants.R
-import com.example.rants.model.Calendar
+import com.example.rants.model.CalendarModel
 
 class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
-    private val calendarEvents = mutableListOf<Calendar>()
+    private val calendarEvents = mutableListOf<CalendarModel>()
 
-    fun setData(data: List<Calendar>) {
+    fun setData(data: List<CalendarModel>) {
         calendarEvents.clear()
         calendarEvents.addAll(data)
         notifyDataSetChanged()
@@ -34,7 +34,7 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
         private val dateText: TextView = itemView.findViewById(R.id.dateText)
         private val descriptionText: TextView = itemView.findViewById(R.id.descriptionText)
 
-        fun bind(event: Calendar) {
+        fun bind(event: CalendarModel) {
             titleText.text = event.title
             dateText.text = event.date
             descriptionText.text = event.description ?: "Tidak ada deskripsi"

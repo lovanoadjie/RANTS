@@ -1,11 +1,21 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
+    <!-- Tema untuk Mode Gelap -->
     <style name="Base.Theme.RANTS" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Transparent system bars for edge-to-edge. -->
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
-    </style>
+        <!-- Warna Latar Belakang -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="colorSurface">@color/cardBackground</item> <!-- Untuk CardView -->
 
-    <style name="Theme.RANTS" parent="Base.Theme.RANTS" />
+        <!-- Warna Teks -->
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorSecondary">@color/gray</item>
+
+        <!-- Warna Navbar -->
+        <item name="colorPrimaryVariant">@color/navbarBackground</item>
+        <item name="colorOnPrimary">@color/black</item>
+
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>
