@@ -7,8 +7,45 @@
     android:layout_height="match_parent"
     tools:context=".EditprofilActivity">
 
-    <!-- Profile Icon -->
+    <!-- AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:title="KOSTUM"
+            android:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/fotojadwal"
+            app:elevation="4dp"
+            android:theme="@style/ToolbarShadow">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="18dp"
+                android:text="Edit Profil"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Profile Icon -->
     <ImageView
         android:id="@+id/fotoProfil"
         android:layout_width="100dp"
@@ -16,11 +53,10 @@
         android:background="@drawable/gradientbulat"
         android:scaleType="centerCrop"
         android:src="@drawable/baseline_person_24"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="80dp"
-        android:layout_marginTop="50dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp" />
 
     <!-- Card Container -->
     <androidx.cardview.widget.CardView
@@ -87,6 +123,7 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:textColorHint="#5F5E5E"
+                    android:focusable="false"
                     android:hint="Masukkan Email"
                     android:textSize="16sp"
                     android:paddingStart="16dp" />
@@ -118,32 +155,6 @@
                     android:paddingStart="16dp" />
             </androidx.cardview.widget.CardView>
 
-            <!-- Password Field -->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Password"-->
-<!--                android:textSize="14sp"-->
-<!--                android:layout_marginBottom="4dp" />-->
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="48dp"-->
-<!--                android:layout_marginBottom="16dp"-->
-<!--                app:cardCornerRadius="10dp"-->
-<!--                app:cardElevation="4dp">-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/passwordEditText"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@android:color/transparent"-->
-<!--                    android:textColorHint="#5F5E5E"-->
-<!--                    android:hint="Masukkan Password"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:paddingStart="16dp" />-->
-<!--            </androidx.cardview.widget.CardView>-->
-
             <!-- Simpan Button -->
             <Button
                 android:id="@+id/saveButton"
@@ -156,47 +167,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins"
                 android:textStyle="bold" />
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-        tools:ignore="MissingConstraints">
-
-        <!-- Toolbar -->
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:title="KOSTUM"
-            android:titleTextColor="@color/black"
-            app:navigationIcon="@drawable/fotojadwal"
-            app:elevation="4dp"
-            android:theme="@style/ToolbarShadow" >
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_marginTop="18dp"
-                android:text="Edit Profil"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-        </androidx.appcompat.widget.Toolbar>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

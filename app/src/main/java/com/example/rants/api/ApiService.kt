@@ -3,7 +3,6 @@ package com.example.rants.api
 import com.example.rants.model.AuthResponse
 import com.example.rants.model.CalendarAll
 import com.example.rants.model.CalendarModel
-//import com.example.rants.model.DetailResponse
 import com.example.rants.model.Gallery
 import com.example.rants.model.GalleryResponse
 import com.example.rants.model.LoginRequest
@@ -89,9 +88,6 @@ interface ApiService {
     @POST("pesanan-kostum")
     fun createKostumOrder(@Body orderRequest: PesananKostumRequest): Call<PesananKostumResponse>
 
-    @GET("profile")
-    fun getUserProfile(@Header("Authorization") token: String): Call<UserResponse>
-
     @POST("payment/createTransaction")
     fun createTransaction(
         @Header("Authorization") authorization: String,
@@ -104,10 +100,24 @@ interface ApiService {
         @Body transaction: PaymentVerificationRequest // Request body yang berisi transaction_id
     ): Call<PaymentVerificationResponse>
 
-    @PUT("profile/update")
-    fun updateUserProfile(
-        @Header("Authorization") token: String,
-        @Body userProfile: UserProfile
-    ): Call<UserResponse>
+    @GET("profile")
+    fun getUserProfile(@Header("Authorization") token: String): Call<UserResponse>
+
+//    @Multipart
+//    @PUT("profile/update")
+//    fun updateUserProfile(
+//        @Header("Authorization") token: String,
+//        @Part("name") name: RequestBody,
+//        @Part("email") email: RequestBody,
+//        @Part("nohp") nohp: RequestBody,
+//        @Part image: MultipartBody.Part?
+//    ): Call<UserResponse>
+
+
+        @PUT("profile/update")
+        fun updateUserProfile(
+            @Header("Authorization") token: String,
+            @Body userProfile: UserProfile
+        ): Call<UserResponse>
 }
 

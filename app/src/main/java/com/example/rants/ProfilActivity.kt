@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.rants.api.ApiConfig
 import com.example.rants.api.ApiService
 import com.example.rants.databinding.ActivityProfilBinding
@@ -23,22 +24,21 @@ class ProfilActivity : AppCompatActivity() {
         binding = ActivityProfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Tombol untuk pergi ke Edit Profil
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding.ubahprofilButton.setOnClickListener {
             goToEditprofilActivity()
         }
 
-        // Bottom navigation setup
         binding.bottomNavigation.selectedItemId = R.id.bottom_profil
         setupBottomNavigation()
         overridePendingTransition(0, 0)
 
-        // Tombol close (tambahkan aksi sesuai kebutuhan)
         binding.close.setOnClickListener {
-            logout() // Tutup activity Profil
+            logout()
         }
 
-        // Ambil token dari SharedPreferences dan panggil API untuk mengambil profil
         val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
         val token = sharedPreferences.getString("token", null)
         Log.d("token", token.toString())
@@ -47,7 +47,7 @@ class ProfilActivity : AppCompatActivity() {
             fetchUserProfile(token)
         } else {
             Toast.makeText(this, "Token tidak ditemukan!", Toast.LENGTH_SHORT).show()
-            finish() // Jika token tidak ada, keluar dari activity
+            finish()
         }
     }
 
@@ -56,10 +56,10 @@ class ProfilActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
         val token = sharedPreferences.getString("token", null)
         if (token != null) {
-            fetchUserProfile(token) // Panggil ulang API untuk mengambil profil setiap kali aktivitas kembali aktif
+            fetchUserProfile(token)
         } else {
             Toast.makeText(this, "Token tidak ditemukan!", Toast.LENGTH_SHORT).show()
-            finish() // Jika token tidak ada, keluar dari activity
+            finish()
         }
     }
 
@@ -85,9 +85,10 @@ class ProfilActivity : AppCompatActivity() {
                         binding.nameEditText.setText(userProfile.name)
                         binding.emailEditText.setText(userProfile.email)
                         binding.phoneEditText.setText(userProfile.nohp)
-                        // Menampilkan URL gambar profil (contoh menggunakan Glide)
                         Glide.with(this@ProfilActivity)
                             .load(userProfile.image_url)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
                             .into(binding.fotoProfil)
                     } else {
                         Log.e("ProfilActivity", "User data is null")
@@ -120,16 +121,11 @@ class ProfilActivity : AppCompatActivity() {
                         val logoutResponse = response.body()
                         if (logoutResponse != null) {
                             if (logoutResponse.status == "success") {
-                                // Hapus token dari SharedPreferences
                                 val editor = sharedPreferences.edit()
                                 editor.remove("token")
                                 editor.apply()
-
-                                // Verifikasi penghapusan
                                 val removedToken = sharedPreferences.getString("token", null)
                                 Log.d("Logout", "Token setelah dihapus: $removedToken")
-
-                                // Tampilkan pesan sukses dan kembali ke halaman login
                                 Toast.makeText(this@ProfilActivity, logoutResponse.message, Toast.LENGTH_SHORT).show()
                                 goToLoginActivity()
                             } else {

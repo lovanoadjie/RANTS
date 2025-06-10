@@ -24,26 +24,26 @@
         <!-- CardView untuk form login -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="555dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@android:color/transparent"
-            app:cardCornerRadius="25dp"
+            app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
-            android:layout_margin="15dp"
-            >
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="12dp"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/poppins_regular"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="15dp"
                             android:text="Registrasi"
                             android:textSize="20sp"
@@ -57,20 +57,130 @@
                             app:cardCornerRadius="10dp"
                             app:cardElevation="10dp"
                             android:layout_marginHorizontal="15dp"
-                            android:layout_marginVertical="10dp"
-                            >
+                            android:layout_marginVertical="10dp">
 
-                                <EditText
-                                    android:id="@+id/editText1"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
                                     android:background="@color/white"
-                                    android:fontFamily="@font/poppins_light"
-                                    android:hint="Nama Lengkap"
-                                    android:inputType="text"
-                                    android:paddingLeft="16dp"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/grey" />
+                                    android:paddingStart="8dp">
+
+                                        <!-- Ikon Person -->
+                                        <ImageView
+                                            android:id="@+id/usn"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:src="@drawable/baseline_person_24"
+                                            app:tint="@color/grey"
+                                            android:layout_gravity="center_vertical" />
+
+                                        <!-- EditText -->
+                                        <EditText
+                                            android:id="@+id/editText1"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:hint="Nama Lengkap"
+                                            android:fontFamily="@font/poppins_light"
+                                            android:inputType="text"
+                                            android:paddingStart="8dp"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/grey"
+                                            android:background="@android:color/transparent" />
+                                </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_gravity="bottom"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:background="@color/white"
+                                    android:paddingStart="8dp">
+
+                                        <!-- Ikon Person -->
+                                        <ImageView
+                                            android:id="@+id/hp"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:src="@drawable/baseline_call_24"
+                                            app:tint="@color/grey"
+                                            android:layout_gravity="center_vertical" />
+
+                                        <!-- EditText -->
+                                        <EditText
+                                            android:id="@+id/editTextNoHP"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:hint="Nomor HP"
+                                            android:fontFamily="@font/poppins_light"
+                                            android:inputType="text"
+                                            android:paddingStart="8dp"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/grey"
+                                            android:background="@android:color/transparent" />
+                                </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_gravity="bottom"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            android:layout_margin="15dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:background="@color/white"
+                                    android:paddingStart="8dp">
+
+                                        <!-- Ikon Email -->
+                                        <ImageView
+                                            android:id="@+id/emailIcon"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:src="@drawable/baseline_email_24"
+                                            app:tint="@color/grey"
+                                            android:layout_gravity="center_vertical" />
+
+                                        <!-- EditText -->
+                                        <EditText
+                                            android:id="@+id/editText2"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/poppins_light"
+                                            android:hint="Email"
+                                            android:paddingStart="8dp"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/grey"
+                                            android:textSize="16sp"
+                                            android:inputType="text" />
+                                </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
 
@@ -82,69 +192,43 @@
                             app:cardCornerRadius="10dp"
                             app:cardElevation="10dp"
                             android:layout_marginHorizontal="15dp"
-                            android:layout_marginVertical="10dp"
-                            >
+                            android:layout_marginVertical="10dp">
 
-                                <EditText
-                                    android:id="@+id/editTextNoHP"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
                                     android:background="@color/white"
-                                    android:hint="Nomor HP"
-                                    android:fontFamily="@font/poppins_light"
-                                    android:inputType="text"
-                                    android:paddingLeft="16dp"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/grey" />
+                                    android:paddingStart="8dp">
+
+                                        <!-- Ikon Password -->
+                                        <ImageView
+                                            android:id="@+id/passwordIcon"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:src="@drawable/baseline_lock_24"
+                                            app:tint="@color/grey"
+                                            android:layout_gravity="center_vertical" />
+
+                                        <!-- EditText -->
+                                        <EditText
+                                            android:id="@+id/editText3"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:hint="Password"
+                                            android:fontFamily="@font/poppins_light"
+                                            android:paddingStart="8dp"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/grey"
+                                            android:textSize="16sp"
+                                            android:inputType="textPassword" />
+                                </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:background="@android:color/transparent"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="10dp"
-                            android:layout_margin="15dp"
-                            >
 
-                                <EditText
-                                    android:id="@+id/editText2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/white"
-                                    android:fontFamily="@font/poppins_light"
-                                    android:textColorHint="@color/grey"
-                                    android:textColor="@color/black"
-                                    android:hint="Email"
-                                    android:paddingLeft="20dp"
-                                    android:inputType="text"/>
-
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:background="@android:color/transparent"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="10dp"
-                            android:layout_marginHorizontal="15dp"
-                            android:layout_marginVertical="10dp"
-                            >
-
-                                <EditText
-                                    android:id="@+id/editText3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/white"
-                                    android:textColorHint="@color/grey"
-                                    android:textColor="@color/black"
-                                    android:hint="Password"
-                                    android:fontFamily="@font/poppins_light"
-                                    android:paddingLeft="16dp"
-                                    android:inputType="text"/>
-
-                        </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
@@ -154,22 +238,43 @@
                             app:cardCornerRadius="10dp"
                             app:cardElevation="10dp"
                             android:layout_marginHorizontal="15dp"
-                            android:layout_marginVertical="10dp"
-                            >
+                            android:layout_marginVertical="10dp">
 
-                                <EditText
-                                    android:id="@+id/editText4"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
                                     android:background="@color/white"
-                                    android:textColorHint="@color/grey"
-                                    android:textColor="@color/black"
-                                    android:fontFamily="@font/poppins_light"
-                                    android:hint="Masukkan Ulang Password"
-                                    android:paddingLeft="16dp"
-                                    android:inputType="text"/>
+                                    android:paddingStart="8dp">
+
+                                        <!-- Ikon Password -->
+                                        <ImageView
+                                            android:id="@+id/password"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:src="@drawable/baseline_lock_24"
+                                            app:tint="@color/grey"
+                                            android:layout_gravity="center_vertical" />
+
+                                        <!-- EditText -->
+                                        <EditText
+                                            android:id="@+id/editText4"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:hint="Konfirmasi Password"
+                                            android:fontFamily="@font/poppins_light"
+                                            android:paddingStart="8dp"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/grey"
+                                            android:textSize="16sp"
+                                            android:inputType="textPassword" />
+                                </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
+
 
 
 
@@ -178,7 +283,7 @@
                             android:layout_width="150dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
-                            android:layout_marginTop="13dp"
+                            android:layout_marginTop="10dp"
                             android:background="@drawable/rounded_register"
                             android:fontFamily="@font/poppins"
                             android:padding="5dp"
@@ -192,7 +297,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
                             android:orientation="horizontal">
 
                                 <TextView
@@ -200,23 +306,18 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_regular"
                                     android:text="Sudah  Punya Akun?"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/loginButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="7dp"
-                                    android:background="@color/white"
-                                    android:fontFamily="@font/poppins_regular"
+                                    android:layout_marginStart="7dp" android:fontFamily="@font/poppins_semibold"
                                     android:onClick="onLoginClick"
                                     android:text="Login Sekarang"
                                     android:textColor="#CE0000"
                                     android:textSize="14sp"
-                                    android:textStyle="bold"
                                     app:backgroundTint="@null" />
-
                         </LinearLayout>
 
                 </LinearLayout>
