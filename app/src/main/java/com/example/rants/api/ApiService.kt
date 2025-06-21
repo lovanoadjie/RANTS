@@ -23,6 +23,7 @@ import com.example.rants.model.PesananTariResponse
 import com.example.rants.model.ProductDetailResponse
 import com.example.rants.model.ProductResponse
 import com.example.rants.model.RegisterRequest
+import com.example.rants.model.RiwayatRequest
 import com.example.rants.model.TariDetailResponse
 import com.example.rants.model.TariResponse
 import com.example.rants.model.UserProfile
@@ -31,6 +32,7 @@ import com.example.rants.model.kosta
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -99,6 +101,9 @@ interface ApiService {
         @Header("Authorization") token: String, // Menggunakan token Bearer untuk autentikasi
         @Body transaction: PaymentVerificationRequest // Request body yang berisi transaction_id
     ): Call<PaymentVerificationResponse>
+
+    @GET("pesanan-kostum/riwayat")
+    fun getRiwayat(@Header("Authorization") token: String): Call<PesananKostumResponse>
 
     @GET("profile")
     fun getUserProfile(@Header("Authorization") token: String): Call<UserResponse>

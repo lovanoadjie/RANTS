@@ -11,85 +11,30 @@
 
     <!-- LinearLayout Utama -->
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Kiri: Gambar Produk + Nama Produk -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <!-- Row 1: Gambar Produk dan Nama Produk -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <!-- Gambar Produk -->
-                <ImageView
-                    android:id="@+id/product_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/riwayat" />
-
-                <!-- Nama Produk -->
-                <TextView
-                    android:id="@+id/product_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:paddingStart="13dp"
-                    android:text="Nama Produk"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Kanan: Harga Produk, Total Produk, dan Tombol -->
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvNamaProduk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:orientation="vertical"
-            android:paddingStart="20dp">
+            android:text="Nama Produk"
+            android:textStyle="bold" />
 
-            <!-- Harga Produk -->
-            <TextView
-                android:id="@+id/product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp0.000"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvHarga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp10.000" />
 
-            <!-- Total Produk -->
-            <TextView
-                android:id="@+id/product_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Total 1 produk"
-                android:textSize="12sp"
-                android:textColor="@android:color/darker_gray" />
-
-            <!-- Tombol Lihat Produk -->
-            <Button
-                android:id="@+id/button_buy_again"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Lihat Produk"
-                android:textSize="12sp"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvJumlah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total 1 produk" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

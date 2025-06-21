@@ -211,27 +211,31 @@ class PesananTariActivity : AppCompatActivity() {
 
 
     private fun createOrder(tariId: Int) {
-        // Convert date from input field
         val formattedDate = convertDateFormat(binding.etDate.text.toString())
         if (formattedDate.isEmpty()) {
             Toast.makeText(this, "Tanggal tidak valid!", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Assuming you have a function to get current timestamp in the desired format
-        val currentTimestamp = getCurrentTimestamp()
+        // Ambil jam dari TimePicker dengan benar
+        val hour = binding.etTime.hour
+        val minute = binding.etTime.minute
+        val jamPemakaian = String.format("%02d:%02d", hour, minute)
 
-        // Create the order request object
+        // Tetap ambil user_id seperti source code lamamu
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+        val userId = sharedPreferences.getInt("user_id", 1) // default 1 kalau belum login
+
         val orderRequest = PesananTariRequest(
-            penyewaan_jasa_taris_id = tariId,  // Assuming tariId represents the service ID
-            Users_id = 1,  // Replace with actual user ID
-            tanggal = formattedDate,  // Date of the order
-            jam_pemakaian = binding.etTime.toString(),  // Example: you can dynamically set this based on user input or requirements
-            alamat = binding.etLocation.text.toString(),  // Get address from user input
-            latitude = null,  // You can replace this with real coordinates
-            longitude = null,  // You can replace this with real coordinates
-            total_harga = basePrice * quantity,  // Calculate total price
-            status_pesanan = "selesai",  // Default status, can be updated later
+            penyewaan_jasa_taris_id = tariId,
+            Users_id = userId,
+            tanggal = formattedDate,
+            jam_pemakaian = jamPemakaian,  // JAM SUDAH BENAR
+            alamat = binding.etLocation.text.toString(),
+            latitude = null,
+            longitude = null,
+            total_harga = basePrice * quantity,
+            status_pesanan = "selesai"
         )
 
         // Create the API service instance
@@ -270,19 +274,6 @@ class PesananTariActivity : AppCompatActivity() {
                 ).show()
             }
         })
-
-
-
-//        private fun goToPembayaranActivity() {
-//        val intent = Intent(this, PembayaranActivity::class.java)
-//        startActivity(intent)
-//    }
-
-        // Format mata uang untuk tipe Double
-//    private fun formatCurrency(value: Int): String {
-//        val numberFormat = NumberFormat.getInstance(Locale("id", "ID"))
-//        return numberFormat.format(value)
-//    }
     }
 
     private fun showPaymentSuccessDialog(snapToken: String, orderId: String) {

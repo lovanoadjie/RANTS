@@ -36,10 +36,21 @@ data class PesananKostumRequest (
 data class PesananKostumResponse(
     val success: Boolean,
     val message: String,
-    val data: PesananData?
+    val data: List<PesananKostum>
 )
 
 data class PesananKostumData(
+    val kosta_id: Int,
+    val User_id: Int,
+    val waktu_pemakaian_mulai: String,
+    val waktu_pemakaian_string: String,
+    val total_harga: Int,
+    val status_pesanan: String,
+    val created_at: String,
+    val update_at: String
+)
+
+data class PesananKostum(
     val kosta_id: Int,
     val User_id: Int,
     val waktu_pemakaian_mulai: String,

@@ -5,15 +5,13 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.util.Patterns
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rants.api.ApiConfig
 import com.example.rants.api.ApiService
-import com.example.rants.model.LoginRequest
 import com.example.rants.databinding.ActivityLoginBinding
 import com.example.rants.model.AuthResponse
+import com.example.rants.model.LoginRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,186 +20,102 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var isPasswordVisible = false
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.editText2.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-        binding.showPasswordIcon.setImageResource(R.drawable.view)
+        // Password visibility
+        togglePasswordVisibility()
+        binding.showPasswordIcon.setOnClickListener {
+            togglePasswordVisibility()
+        }
 
-
-        // Handle klik tombol login
+        // Tombol login
         binding.loginButton.setOnClickListener {
             val email = binding.editText1.text.toString().trim()
             val password = binding.editText2.text.toString().trim()
-
-            Log.d("LoginActivity", "Data yang dikirimkan: Email: $email, Password: $password")
 
             if (!isValidEmail(email)) {
                 Toast.makeText(this, "Email tidak valid", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (password.isEmpty()) {
+            if (password.isEmpty() || password.length < 6) {
                 Toast.makeText(this, "Password minimal 6 karakter", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Panggil fungsi login
             loginUser(email, password)
         }
 
-        //handle login google
-//        binding.loginGoogle.setOnClickListener{
-//            Toast.makeText(this, "Tombol Login Google", Toast.LENGTH_SHORT).show()
-//        }
-
-        // Handle klik tombol daftar
+        // Navigasi ke halaman register
         binding.daftarTextView.setOnClickListener {
-            goToRegisterActivity()
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
-
-        binding.showPasswordIcon.setOnClickListener {
-            togglePasswordVisibility()
-        }
-
-        // Menampilkan atau menyembunyikan password
-        togglePasswordVisibility()
-
-        binding.editText2.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        binding.showPasswordIcon.setImageResource(R.drawable.hide)
     }
 
     private fun isValidEmail(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isNotEmpty()
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun togglePasswordVisibility() {
         isPasswordVisible = !isPasswordVisible
-
         if (isPasswordVisible) {
-            // Jika password terlihat
             binding.editText2.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            binding.showPasswordIcon.setImageResource(R.drawable.view) // Ikon mata terbuka
+            binding.showPasswordIcon.setImageResource(R.drawable.view)
         } else {
-            // Jika password tersembunyi
             binding.editText2.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            binding.showPasswordIcon.setImageResource(R.drawable.hide) // Ikon mata tertutup
+            binding.showPasswordIcon.setImageResource(R.drawable.hide)
         }
-
-        // Pastikan kursor tetap di akhir teks
         binding.editText2.setSelection(binding.editText2.text.length)
     }
-
-
-//    private fun handleShowPassword() {
-//        val passwordEditText = binding.editText2
-//        val showPasswordCheckbox = binding.showPasswordIcon
-//
-//        // Set inputType untuk password di awal (secara default password disembunyikan)
-//        passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-//
-//        // Pastikan kursor berada di akhir teks saat password diatur
-//        passwordEditText.setSelection(passwordEditText.text.length)
-//
-//        // Menambahkan listener untuk checkbox
-//        showPasswordCheckbox.setOnCheckedChangeListener { _, isChecked ->
-//            passwordEditText.inputType = if (isChecked) {
-//                // Jika checkbox dicentang, tampilkan password
-//                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-//            } else {
-//                // Jika checkbox tidak dicentang, sembunyikan password
-//                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-//            }
-//
-//            // Mengatur posisi kursor tetap di akhir teks
-//            passwordEditText.setSelection(passwordEditText.text.length)
-//        }
-//    }
-
 
     private fun loginUser(email: String, password: String) {
         val apiService = ApiConfig.getRetrofit().create(ApiService::class.java)
         val loginRequest = LoginRequest(email, password)
 
-        Log.d("LoginActivity", "Memulai permintaan API untuk login")
         apiService.login(loginRequest).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                Log.d("LoginActivity", "Respons API diterima: ${response.code()}")
-
                 if (response.isSuccessful) {
                     val authResponse = response.body()
+                    val token = authResponse?.data?.token
 
-                    // Cek apakah respons API berhasil dan token ada
-                    if (authResponse != null) {
-                        val token = authResponse.data.token  // Dapatkan token dari data
-                        Log.d("LoginActivity", "Token diterima: $token")
-
-                        // Simpan token ke SharedPreferences
+                    if (!token.isNullOrEmpty()) {
                         saveTokenToSharedPreferences(token)
-                        Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT)
-                            .show()
-
-                        // Navigasi ke beranda setelah login sukses
+                        Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                         goToBerandaActivity()
                     } else {
-                        Log.e("LoginActivity", "Token tidak ditemukan dalam respons")
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "Login gagal: Token tidak ditemukan",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@LoginActivity, "Token kosong!", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    val errorBody = response.errorBody()?.string()
-                    Log.e(
-                        "LoginActivity",
-                        "Login gagal: ${response.message()} (Code: ${response.code()})"
-                    )
-                    Log.e("LoginActivity", "Error Body: $errorBody")
+                    val error = response.errorBody()?.string()
                     Toast.makeText(
                         this@LoginActivity,
-                        "Login gagal: ${response.message()}",
-                        Toast.LENGTH_SHORT
+                        "Login gagal: ${response.code()} - ${response.message()}",
+                        Toast.LENGTH_LONG
                     ).show()
+                    Log.e("Login", "Error: $error")
                 }
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Log.e("LoginActivity", "Gagal menghubungi server: ${t.message}")
-                Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Gagal: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e("Login", "onFailure: ${t.message}")
             }
         })
-
-
     }
 
     private fun saveTokenToSharedPreferences(token: String) {
         val sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
-        val existingToken = sharedPreferences.getString("token", null)
-
-        // Jika token belum ada, simpan token baru
-        if (existingToken == null) {
-            sharedPreferences.edit().putString("token", token).apply()
-            Log.d("LoginActivity", "Token baru disimpan di SharedPreferences: $token")
-        } else {
-            Log.d("LoginActivity", "Token sudah ada: $existingToken")
-        }
+        sharedPreferences.edit().putString("token", token).apply()
+        Log.d("LoginActivity", "Token disimpan: $token")
     }
 
-
     private fun goToBerandaActivity() {
-        Log.d("LoginActivity", "Navigasi ke BerandaActivity")
         val intent = Intent(this, BerandaActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    private fun goToRegisterActivity() {
-        Log.d("LoginActivity", "Navigasi ke RegisterActivity")
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
     }
 }
